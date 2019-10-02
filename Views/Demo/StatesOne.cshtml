@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "VictorWelch.Com: States";
+}
+@section Scripts {
+    <script src="~/js/ejs.js"></script>
+    <script src="~/lib/myjquery/vw$util.js"></script>
+    <script src="~/lib/myjquery/uTblDndPlugin.js"></script>
+    <script src="~/lib/js4view/StateOne.js"></script>
+}
+<div id="jumbo2" style="display:block;" class="jumbotron">
+    <div id="divTlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
+    <div id="divBlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
+    <div id="divLlineJumboCollapsed00" class="myJumboCollapsedLeftRightLine" style="display:block;"></div>
+    <div id="divRlineJumboCollapsed00" class="myJumboCollapsedLeftRightLine" style="display:block;"></div>
+    <div id="divUlCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myUlCrnrImage" style="display:block;"></div>
+    <div id="divUrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myUrCrnrImage" style="display:block;"></div>
+    <div id="divLlCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLlCrnrImage" style="display:block;"></div>
+    <div id="divLrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLrCrnrImage" style="display:block;"></div>
+    <div id="divVwBanner00" style="display:block;"></div>
+    <div id="divCollapsedHeaderLine00" style="display:block;"></div>
+    <div id="divCollapsedHeaderLeft00" class="collapsedHdrLeftRight" style="display:block;"></div>
+    <div id="divCollapsedHeaderRight00" class="collapsedHdrLeftRight" style="display:block;"></div>
+</div>
+<div id="myRow0" class="row myRow myRow0Class">
+    <div id="col0" class="col-md-12">
+        <div id="divTlineBrdrContainer01" class="myBrdrContainerTopBotLine"></div>
+        <div id="divBlineBrdrContainer01" class="myBrdrContainerTopBotLine"></div>
+        <div id="divLlineBrdrContainer01" class="myBrdrContainerLeftRightLine"></div>
+        <div id="divRlineBrdrContainer01" class="myBrdrContainerLeftRightLine"></div>
+        <div id="divUlCrnrBrdrContainer01" class="myBrdrContainerCrnr myUlCrnrImage"></div>
+        <div id="divUrCrnrBrdrContainer01" class="myBrdrContainerCrnr myUrCrnrImage"></div>
+        <div id="divLlCrnrBrdrContainer01" class="myBrdrContainerCrnr myLlCrnrImage"></div>
+        <div id="divLrCrnrBrdrContainer01" class="myBrdrContainerCrnr myLrCrnrImage"></div>
+        <div id="divCol0Wrap" class="col0Wrap">
+            <div id="divInstrContainer" class="instrContainer">
+                <div id="divInstrInner" class="instrInner">
+                    <section id="secInstrContainer">
+                        <div id="divInstr0" class="divInstrZero">
+                            <div id="divInstBackground" class="instrBackground">
+                                <h3 class="welcomePanel">Welcome to a drag and drop demo, in the guise of a game!</h3>
+                                <ul class="ulInstr">
+                                    <li class="liInstr">Upon hitting the start button below, you will be presented with the names of U.S. States in random order – and a timer will start!</li>
+                                    <li class="liInstr">State names that by chance land in their sort order position are removed from play and appear as faded entries.</li>
+                                    <li class="liInstr">Select a state by clicking its icon and holding the mouse button down.
+                                    <li class="liInstr">
+                                        Drag the state to its new position, and drop it by releasting the mouse button.
+                                    </li>
+                                </ul>
+                                <table class="table table-responsive tblInstr">
+                                    <tr id="trVideoButton">
+                                        <td align="right">To view a video of a move in the game, select this button: </td>
+                                        <td><a id="aViewVideo" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">View Instruction Video &raquo;</a></td>
+                                    </tr>
+                                    <tr id="trStartGameButton">
+                                        <td align="right">To start the game, select this button: </td>
+                                        <td><a id="aStartGame" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">Start Game &raquo;</a></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="divAnimInstr" style="text-align:center;width:100%;display:none;" notshow="true">
+                            <div style="display:inline-block;">
+                                <div>
+                                    <video id="videoCtrl" width="640" height="419" controls muted preload="auto">
+                                        <source src="../images/dndInstrShort.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div id="spacerdiv0" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;text-align:center;">
+            <img id="spacerimg0" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+        </div>
+    </div>
+</div>
+<div id="myRowScore" style="clear:both;position:relative;top:0;display:none;background: url(../images/bgDamascus03.png) repeat;border-top: 15px solid black;text-align:center;" class="row myRow" notshow="true">
+    <div id="divScoreContainer" class="scoreContainer">
+        <div style="width: 100%;height:100%;border:1px solid black;background:transparent;text-align: center;display: inline-block;padding-top:6px;">
+            <div style="width:100%;height:100%;text-align:center;display:inline-block;">
+                <table style="border-collapse:collapse;display:inline-block;" class="table-responsive">
+                    <tr>
+                        <td align="right">
+                            <a id="aNewGame" class="btn btn-default btn-custom-vw" href="" onclick="clickHandler(event); return false;" style="margin-right:15px;">Start A New Game &raquo;</a>
+                        </td>
+                        <td align="center">
+                            <div id="divDummy" style="background:#ddd;color:black;width: 170px;margin: 8px;text-align: center;display: inline-block;border:1px solid black;font-size:18px;font-weight:bold;font-style:italic;">00:00:00.000</div>
+                        </td>
+                        <td align="left">
+                            <a id="aAutoSort" class="btn btn-default btn-custom-vw" href="" onclick="clickHandler(event); return false;" style="margin-left:15px;">Auto Sort States &raquo;</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myRow1" class="row myRow" style="clear:both;position:relative;top:0;display:none;background:url(../images/bgDamascus03.png);background-repeat:repeat;" notshow="true">
+    <div id="col1" class="col-md-4 myColMd4Left" style="display:none;background:transparent;" notshow="true">
+        <div id="divCol1Wrap" style="clear:both;position:relative;top:0;left:0;">
+        </div>
+        <div id="spacerdiv1" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+            <img id="spacerimg1" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+        </div>
+    </div>
+    <div id="col2" class="col-md-4 myColMd4Center" style="display:none;background:transparent;e" notshow="true">
+        <div id="divCol2Wrap" style="clear:both;position:relative;top:0;left:0;">
+        </div>
+        <div id="spacerdiv2" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+            <img id="spacerimg2" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+        </div>
+    </div>
+    <div id="col3" class="col-md-4 myColMd4Right" style="display:none;background:transparent;" notshow="true">
+        <div id="divCol3Wrap" style="clear:both;position:relative;top:0;left:0;">
+        </div>
+        <div id="spacerdiv3" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+            <img id="spacerimg3" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+        </div>
+    </div>
+</div>
