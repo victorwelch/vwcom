@@ -74,9 +74,9 @@
             if (this.is('li')) {
                 var checkLi = this;
                 var allLiList = $().getAllLiList();
-                if (this.hasClass('ui-sortable-helper')) {
-                    checkLi = allLiList.filter('li.ui-sortable-placeholder').first();
-                }
+                //if (this.hasClass('ui-sortable-helper')) {
+                //    checkLi = allLiList.filter('li.ui-sortable-placeholder').first();
+                //}
                 var allLiIdx = allLiList.index(checkLi);
                 myRtn = allLiIdx;
             }
@@ -96,10 +96,10 @@
             return myRtn;
         };
         jQuery.fn.getAllLiList = function () {
-            return vw$GetGlobal('ulList').find('li:not(.ui-sortable-helper)');
+            return vw$GetGlobal('ulList').find('li');
         };
         jQuery.fn.getDoneLiList = function () {
-            return vw$GetGlobal('ulList').find('li.' + vw$GetGlobal('onDoneClassLi')+',li.ui-sortable-placeholder');
+            return vw$GetGlobal('ulList').find('li.' + vw$GetGlobal('onDoneClassLi')+',li.ui-sortable-placeholder,li.moveBg');
         };
         jQuery.fn.getUlList = function () {
             return vw$GetGlobal('ulList');
@@ -124,12 +124,11 @@
         };
         //
         var doMouseDown = function (e) {
-            uObj.mouseObj = createMouseObjFactory();
             uObj.indexObj = createIndexObjFactory();
             uObj.indexObj.init();
             uObj.allIndex = $(this).attr('allIndex');
-            uObj.currIndex = $(this).getAllLiIdx();
-            vw$SetGlobal('lastHolderIdx', uObj.currIndex);
+            var holderIdxObj = { liIdx: -1, ulIdx: -1 };
+            vw$SetGlobal('lastHolderIdxObj', holderIdxObj);
             $(this).css('cursor', 'move');
             $(this).addClass('moveBg');
             $(this).bind('mouseup', doMouseUp);
@@ -142,48 +141,23 @@
         //
         var doMouseMove = function (ev) {
             var allLiList = $().getAllLiList();
-            var currHolder = allLiList.filter('li.ui-sortable-placeholder').first();
-            var currHolderIdx = allLiList.index(currHolder);
-            var lastHolderidx = vw$GetGlobal('lastHolderIdx');
-            if (currHolderIdx > -1) {
-                if (currHolderIdx != lastHolderIdx) {
-                    vw$SetGlobal('lastHolderIdx', currHolderIdx);
-                    uObj.indexObj.updateOnMove();
-                }
-            }
-        };
-        //
-        var createMouseObjFactory = function () {
-            var myRtn = null;
-            var mouseObj = function () {
-                this.newCoord = new vw$CoordDef();
-                this.oldCoord = new vw$CoordDef(-1, -1);
-                this.moveDelta = 0;
-                this.deltaX = 0;
-                this.deltaY = 0;
-            }
-            mouseObj.prototype.update = function (ev) {
-                var isMove = false;
-                var mousePos = vw$GetMouseCoords(ev);
-                if (this.oldCoord.isNull()) {
-                    this.oldCoord = mousePos;
-                    this.delta = 0;
-                } else {
-                    this.newCoord = mousePos;
-                    this.deltaX = this.oldCoord.x - this.newCoord.x;
-                    var deltaX2 = Math.pow((this.deltaX), 2);
-                    this.deltaY = this.oldCoord.y - this.newCoord.y;
-                    var deltaY2 = Math.pow((this.deltaY), 2);
-                    this.moveDelta = Math.sqrt(deltaX2 + deltaY2);
-                    if (this.moveDelta > 18)  {
-                        isMove = true;
-                        this.oldCoord = this.newCoord;
+            var currHolderLi = allLiList.filter('li.ui-sortable-placeholder').first();
+            var currHolderUl = currHolderLi.parent();
+            var currHolderLiIdx = allLiList.index(currHolderLi);
+            var currHolderUlIdx = $().getUlList().index(currHolderUl)
+            var currHolderIdxObj = { liIdx: currHolderLiIdx, ulIdx: currHolderUlIdx };
+            var lastHolderIdxObj = vw$GetGlobal('lastHolderIdxObj');
+            if (currHolderIdxObj.ulIdx > -1) {
+                if (lastHolderIdxObj.ulIdx > -1) {
+                    if (currHolderIdxObj.ulIdx != lastHolderIdxObj.ulIdx) {
+                        uObj.indexObj.updateOnMove();
+                        vw$SetGlobal('lastHolderIdxObj', currHolderIdxObj);
                     }
+                } else {
+                    vw$SetGlobal('lastHolderIdxObj', currHolderIdxObj);
                 }
-                return isMove;
             }
-            myRtn = new mouseObj();
-            return myRtn;
+
         };
         //
         var createIndexObjFactory = function () {
@@ -214,34 +188,34 @@
             };
             indexObj.prototype.updateMirror = function () {
                 var ulList = vw$GetGlobal('ulList');
-                var liAllList = ulList.find('li:not(.ui-sortable-helper)');
-                var ulMirrorlList = vw$GetGlobal('mirrorUlList');
-                var liMirrorList;
-                var ulMirrorItem;
+                var ulMirrorList = vw$GetGlobal('mirrorUlList');
                 var iidx = 0;
-                var ulMirrorLength;
-                while ((iidx = ulMirrorlList.loop()) > -1) {
-                    ulMirrorItem = ulMirrorlList.eq(iidx);
-                    liMirrorList = ulMirrorItem.find('li');
-                    ulMirrorLength = parseInt(ulMirrorItem.attr('uIndex'));
-                    for (var j = 0; j < ulMirrorLength; j++) {
-                        liMirrorList.eq(j) = liList.eq(j+(iidx*17));
+                var jidx = 0
+                while ((iidx = ulMirrorList.loop()) > -1) {
+                    ulMirrorList.eq(iidx).find('li').remove();
+                    ulListList = ulList.eq(iidx).find('li');
+                    while((jidx = ulListList.loop()) > -1) {
+                        ulMirrorList.eq(iidx).append(ulListList.eq(jidx).clone());
                     }
-                }
+                    ulMirrorList.eq(iidx).removeClass('connectedSortable').addClass('notConnected');
+                    ulMirrorList.eq(iidx).find('li').removeClass('ui-sortable-handle');
+                };
             }
             indexObj.prototype.updateOnMove = function () {
+                this.updateMirror();
                 var doneLiList = $().getDoneLiList();
                 var doneLi = {};
                 this.mirrorCopyUlList = vw$GetGlobal('mirrorUlList').clone();
-                var mirrorCopyAllLiList = this.mirrorCopyUlList.find('li');
                 var mirrorCopyLi = {};
                 var liSortedIndex;
                 var liUlCopyMirrorIndex;
                 var mIdx;
                 while ((mIdx = doneLiList.loop()) > -1) {
                     doneLi = doneLiList.eq(mIdx);
-                    if (doneLi.hasClass('ui-sortable-placeholder')) {
-                        liSortedIndex = doneLi.getAllLiIdx();
+                    if (doneLi.hasClass('ui-sortable-placeholder') ||
+                        doneLi.hasClass('ui-sortable-helper') ||
+                        doneLi.hasClass('moveBg')) {
+                          liSortedIndex = doneLi.getAllLiIdx();
                     } else {
                         liSortedIndex = parseInt(doneLi.attr('allIndex'));
                     }
@@ -249,15 +223,27 @@
                     if (liSortedIndex < 17) {
                         liUlCopyMirrorIndex = liSortedIndex;
                         mirrorCopyLi = this.mirrorCopyUlList.eq(0).find('li').eq(liUlCopyMirrorIndex);
-                        mirrorCopyLi.replaceWith(doneLi);
+                        if (mirrorCopyLi.is('li')) {
+                            mirrorCopyLi.replaceWith(doneLi);
+                        } else {
+                            this.mirrorCopyUlList.eq(0).append(doneLi);
+                        }
                     } else if (liSortedIndex < 34) {
                         liUlCopyMirrorIndex = liSortedIndex - 17;
                         mirrorCopyLi = this.mirrorCopyUlList.eq(1).find('li').eq(liUlCopyMirrorIndex);
-                        mirrorCopyLi.replaceWith(doneLi);
-                    } else if (liSortedIndex < 50) {
+                        if (mirrorCopyLi.is('li')) {
+                            mirrorCopyLi.replaceWith(doneLi);
+                        } else {
+                            this.mirrorCopyUlList.eq(1).append(doneLi);
+                        }
+                    } else {
                         liUlCopyMirrorIndex = liSortedIndex - 34;
                         mirrorCopyLi = this.mirrorCopyUlList.eq(2).find('li').eq(liUlCopyMirrorIndex);
-                        mirrorCopyLi.replaceWith(doneLi);
+                        if (mirrorCopyLi.is('li')) {
+                            mirrorCopyLi.replaceWith(doneLi);
+                        } else {
+                            this.mirrorCopyUlList.eq(2).append(doneLi);
+                        }
                     }
                 }
                 //
@@ -277,27 +263,46 @@
                     if (mIdx < 17) {
                         mirrorCopyLi = mirrorCopyUlLiNotDoneList[0].first();
                         mirrorCopyUlLiNotDoneList[0] = mirrorCopyUlLiNotDoneList[0].not(':first');
-                        mirrorCopyLi.replaceWith(notDoneLi);
+                        if (mirrorCopyLi.is('li')) {
+                            mirrorCopyLi.replaceWith(notDoneLi);
+                        } else {
+                            this.mirrorCopyUlList.eq(0).append(notDoneLi);
+                        }
                     } else if (mIdx < 34) {
                         mirrorCopyLi = mirrorCopyUlLiNotDoneList[1].first();
                         mirrorCopyUlLiNotDoneList[1] = mirrorCopyUlLiNotDoneList[1].not(':first');
-                        mirrorCopyLi.replaceWith(notDoneLi);
-                    } else if (mIdx < 50) {
+                        if (mirrorCopyLi.is('li')) {
+                            mirrorCopyLi.replaceWith(notDoneLi);
+                        } else {
+                            this.mirrorCopyUlList.eq(1).append(notDoneLi);
+                        }
+                    } else {
                         mirrorCopyLi = mirrorCopyUlLiNotDoneList[2].first();
                         mirrorCopyUlLiNotDoneList[2] = mirrorCopyUlLiNotDoneList[2].not(':first');
-                        mirrorCopyLi.replaceWith(notDoneLi);
+                        if (mirrorCopyLi.is('li')) {
+                            mirrorCopyLi.replaceWith(notDoneLi);
+                        } else {
+                            this.mirrorCopyUlList.eq(2).append(notDoneLi);
+                        }
                     }
                 }
                 //
                 var ulList = $().getUlList();
                 var ulMirrorCopyLiList = this.mirrorCopyUlList.find('li');
+                var ctr = 0;
+                var isHelper = false;
                 while ((mIdx = ulMirrorCopyLiList.loop()) > -1) {
-                    if (mIdx < 17) {
+                    mirrorLiCopy = ulMirrorCopyLiList.eq(mIdx);
+                    isHelper = mirrorLiCopy.hasClass('moveBg') || mirrorLiCopy.hasClass('ui-sortable-helper');
+                    if (ctr < 17) {
                         ulList.eq(0).append(ulMirrorCopyLiList.eq(mIdx));
-                    } else if (mIdx < 34) {
+                    } else if (ctr < 34) {
                         ulList.eq(1).append(ulMirrorCopyLiList.eq(mIdx));
-                    } else if (mIdx < 50) {
+                    } else {
                         ulList.eq(2).append(ulMirrorCopyLiList.eq(mIdx));
+                    }
+                    if (!isHelper) {
+                        ctr++;
                     }
                 }
                 //
@@ -312,8 +317,8 @@
                 this.updateOnMove();
                 var li;
                 var allLiList = $().getAllLiList();
-                var oIdx
-                while ((oid=allLiList.loop())<-1) {
+                var oIdx;
+                while ((oIdx=allLiList.loop())>-1) {
                     li = allLiList.eq(oIdx);
                     if ((li.isLiOrdered()) && (!this.isDone(oIdx))) {
                         this.setDone(oIdx);
@@ -355,24 +360,24 @@
                 setTimeout(function () { liOff(); }, 250);
                 function liOn() {
                     droppedLi.removeClass('moveBg');
-                    if (droppedLi.isLiOrdered()) {
-                        droppedLi.unbind('mousedown', doMouseDown);
-                        var allLiIdx = droppedLi.getAllLiIdx();
-                        uObj.indexObj.setDone(allLiIdx);
-                        droppedLi.addClass(vw$GetGlobal('onDoneClassLi'));
-                    }
+                    //if (droppedLi.isLiOrdered()) {
+                    //    droppedLi.unbind('mousedown', doMouseDown);
+                    //    var allLiIdx = droppedLi.getAllLiIdx();
+                    //    uObj.indexObj.setDone(allLiIdx);
+                    //    droppedLi.addClass(vw$GetGlobal('onDoneClassLi'));
+                    //}
                     droppedLi.addClass('myFlashLi');
                     //uObj.indexObj.updateOnMove();
                 }
                 function liOff() {
                     droppedLi.removeClass('myFlashLi');
                     uObj.indexObj.updateOnDrop();
-                    if (droppedLi.isLiOrdered()) {
-                        var myDestUl = droppedLi.closest('ul');
-                    }
-                    if (vw$GetGlobal('ulList').find('li:not(.' + uObj.onDoneClassLi + ')').length < 1) {
-                        setTimeout(function () { uObj.onDoneFunction(); }, 1500);
-                    }
+                    //if (droppedLi.isLiOrdered()) {
+                    //    var myDestUl = droppedLi.closest('ul');
+                    //}
+                    //if (vw$GetGlobal('ulList').find('li:not(.' + uObj.onDoneClassLi + ')').length < 1) {
+                    //    setTimeout(function () { uObj.onDoneFunction(); }, 1500);
+                    //}
                 }
             }
         };
