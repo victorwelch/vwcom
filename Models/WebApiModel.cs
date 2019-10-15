@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -74,7 +74,28 @@ namespace vwcom.Models
             }
             return myRtn;
         }
+        public List<string> getStatesTwoTemplates()
+        {
+            List<string> myRtn = new List<string>();
+            try
+            {
+              IDirectoryContents myDirInfo = _hostenv.WebRootFileProvider.GetDirectoryContents(@"templates");
+              foreach (IFileInfo fInfo in myDirInfo)
+              {
+                if (fInfo.Name.StartsWith("statesTwo"))
+                {
+                  myRtn.Add(File.ReadAllText(fInfo.PhysicalPath));
+                }
+              }
+          }
+          catch (Exception ex)
+          {
+              Exception myEx = new IUtilException("victorwelch.com: \"getStatesTwoTemplate\" failure!", ex);
+              throw myEx;
+          }
+          return myRtn;
     }
+  }
 
     public class webResult
     {

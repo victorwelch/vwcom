@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,9 +47,13 @@ namespace vwcom.Controllers
                     DbUtilServices myDbUtil3 = new DbUtilServices(this._dbContext);
                     myRtn=myDbUtil3.getStatesRnd();
                     break;
+                case 4:
+                  FileUtilService myFileUtil4 = new FileUtilService();
+                  myRtn = JsonConvert.SerializeObject(myFileUtil4.getStatesTwoTemplates());
+                  break;
                 default:
-                    break;
-            }
+                  break;
+  }
             return myRtn;
         }
 

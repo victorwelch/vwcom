@@ -1,0 +1,20 @@
+    <div class="ul-container">
+        <ul class="connectedSortable"
+            ullength="16"
+            firstIdx="34"
+            lastIdx="50"><%for (var i=34;i<50;i++) { %>
+            <li id="li<%=randomList[i].sSortNum-1;%>"
+                class="ui-state-default"
+                sortNum="<%=randomList[i].sSortNum;%>"
+                allIndex="<%=randomList[i].sSortNum-1;%>">
+                <div id="div<%=randomList[i].sSortNum-1;%>">
+                  <span><%=randomList[i].state;%></span>
+                </div>
+            </li><% } %>
+        </ul><%for (var i=34;i<50;i++) { %>
+        <div id="divSortNum<%=i+1;%>"
+             class="sortNum"
+             style="top:<%=(i-34)*26;%>px;">
+						<span><%=i+1%></span>
+        </div><% } %>
+    </div>

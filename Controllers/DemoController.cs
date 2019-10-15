@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,8 +10,13 @@ namespace vwcom.Controllers
     {
         public IActionResult StatesOne()
         {
-            ViewData["Title"] = "VictorWelch.com: States";
+            ViewData["Title"] = "VictorWelch.com: States One";
             return View();
+        }
+        public IActionResult StatesTwo()
+        {
+          ViewData["Title"] = "VictorWelch.com: States Two";
+          return View();
         }
     }
 }

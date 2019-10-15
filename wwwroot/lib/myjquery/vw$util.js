@@ -1,3 +1,7 @@
+Array.prototype.setValues = function (size, value) {
+    for (let i = 0; i < size; i++) this.push(value);
+    return this;
+};
 Array.prototype.initIndex = function () {
     this.idx = 0;
     this.idxEnd = this.length;
@@ -10,9 +14,11 @@ Array.prototype.loop = function () {
     if (!(this.idx) || !(this.idxEnd)) { this.initIndex(); }
     if (this.idx < this.idxEnd) {
         this.i = this.idx;
-        this.idx++; return true;
+        this.idx++;
+        return this.i;
     } else {
-        this.nullIndex(); return false;
+        this.nullIndex();
+        return -1;
     }
 };
 //
@@ -25,12 +31,14 @@ jQuery.fn.nullIndex = function () {
     this.idxEnd = null;
 };
 jQuery.fn.loop = function () {
-    if (!(this.idx) || !(this.idxEnd)) { this.initIndex(); }
-    if (this.idx < this.iEnd) {
+    if (!(this.idx) || !(this.idxEnd)) { this.initIndex(); } 
+    if (this.idx < this.idxEnd) {
         this.i = this.idx;
-        this.idx++; return true;
+        this.idx++;
+        return this.i;
     } else {
-        this.nullIndex(); return false;
+        this.nullIndex();
+        return -1;
     }
 };
 //
@@ -68,6 +76,9 @@ var vw$RectDef = function (top, right, bottom, left, width, height) {
 var vw$CoordDef = function (x, y) {
     this.x = (x) ? x : 0;
     this.y = (y) ? y : 0;
+    this.isNull = function () {
+        return (this.x < 0 || this.y < 0) ? true : (this.x == 0 && this.y == 0) ? true : false;
+    }
 };
 //    
 var vw$GetBoundingRect = function (myElemArg) {

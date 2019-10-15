@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -9,20 +9,29 @@
     <title>@ViewData["Title"]</title>
 
     <environment include="Development">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-        <link rel="stylesheet" href="~/css/myNav.css" />
-        <link rel="stylesheet" href="~/css/mySite.css" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arvo&display=swap">
+      <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="~/css/site.css" />
+      <link rel="stylesheet" href="~/css/myNav.css" />
+      <link rel="stylesheet" href="~/css/mySite.css" />
+      @RenderSection("css", false)
     </environment>
     <environment exclude="Development">
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/myNav.min.css" asp-append-version="true" />
-        <link rel="stylesheet" href="~/css/mySite.min.css" asp-append-version="true" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arvo&display=swap">
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+            asp-fallback-test-class="sr-only"
+            asp-fallback-test-property="position"
+            asp-fallback-test-value="absolute"
+            crossorigin="anonymous"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            asp-append-version="true" />
+      <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+      <link rel="stylesheet" href="~/css/myNav.min.css" asp-append-version="true" />
+      <link rel="stylesheet" href="~/css/mySite.min.css" asp-append-version="true" />
+      @RenderSection("css", false)
     </environment>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135382660-4"></script>
     <meta name="description" content="Victor Welch Great Adventures in Web Development" />
@@ -82,7 +91,10 @@
         <div id="myContainer" class="container body-content myContainer"
              style="border-right:solid 15px #000;border-left:solid 15px #000;min-height: 100%;
                    height: 100%;margin:0 auto -15px;bottom:15px;">
-            @RenderBody()
+          @RenderBody()
+          <!-- *******************************************************************************************  -->
+          <div id="divContainerCover" style="z-index:199;background:white;opacity:.1;position:absolute;top:0;left:0;width:100%;height:100%;display:none;"></div>
+          <!-- *******************************************************************************************  -->
         </div>
     </div>
     <div id="footer">
@@ -95,38 +107,38 @@
     </div>
 
     <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
-        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+                crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
         <script src="~/lib/myjquery/jquery.myCommonPlugin.js"></script>
-        <script src="~/lib/myjquery/jquery.myCubeCarouselPlugin.js"></script>
         <script src="~/lib/myjquery/jquery.myInfoImgPlugin.js"></script>
         <script src="~/lib/myjquery/jquery.mySkinnyPlugin.js"></script>
-        <script src="~/lib/myjquery/jquery.myUtilPlugin.js"></script>
         <script src="~/lib/myjquery/modernizr-3.4.0.js"></script>
         <script src="~/lib/myjquery/myUtil.js"></script>
     </environment>
     <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.4.1.min.js"
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
                 asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
                 asp-fallback-test="window.jQuery"
-                crossorigin="anonymous">
-        </script>
-        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-        <script src="~/lib/jquery.validate.unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" 
+                crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
                 asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
                 asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous">
-        </script>
+                crossorigin="anonymous"
+                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"></script>
         <script src="~/js/site.min.js" asp-append-version="true"></script>
         <script src="~/lib/myjquery/jquery.myCommonPlugin.min.js"></script>
-        <script src="~/lib/myjquery/jquery.myCubeCarouselPlugin.min.js"></script>
         <script src="~/lib/myjquery/jquery.myInfoImgPlugin.min.js"></script>
         <script src="~/lib/myjquery/jquery.mySkinnyPlugin.min.js"></script>
-        <script src="~/lib/myjquery/jquery.jquery.myUtilPlugin.min.js"></script>
         <script src="~/lib/myjquery/modernizr-3.4.0.min.js"></script>
         <script src="~/lib/myjquery/myUtil.min.js"></script>
     </environment>

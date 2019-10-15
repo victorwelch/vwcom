@@ -1,12 +1,349 @@
-﻿
+
 @{
-    ViewData["Title"] = "VictorWelch.Com: States Two";
+  ViewData["Title"] = "VictorWelch.Com: States Two";
+}
+@section css {
+  <link href="@Url.Content("~/css/myStatesDemo.css")" rel="stylesheet" />
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"
+        asp-fallback-href="~/lib/jqueryui/jquery-ui.min.css"
+        asp-fallback-test-class="ui-helper-hidden"
+        asp-fallback-test-property="display"
+        asp-fallback-test-value="none"
+        crossorigin="anonymous"
+        integrity="sha256-p6xU9YulB7E2Ic62/PX+h59ayb3PBJ0WFTEQxq0EjHw=" />
 }
 @section Scripts {
-    <script src="~/js/ejs.js"></script>
-    <script src="~/lib/myjquery/vw$util.js"></script>
-    <script src="~/lib/myjquery/uTblDndPlugin.js"></script>
-    <script src="~/lib/js4view/StatesTwo.js"></script>
-}
-<h2>StatesTwo</h2>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"
+          asp-fallback-src="~/lib/jqueryui/jquery-ui.min.js"
+          asp-fallback-test="window.jQuery.ui"
+          integrity="sha256-KM512VNnjElC30ehFwehXjx1YCHPiQkOPmqnrWtpccM="
+          crossorigin="anonymous"></script>
+  <script src="~/js/ejs.js"></script>
+  <script src="~/lib/myjquery/vw$util.js"></script>
+  <script src="~/lib/myjquery/ujQuiDndPlugin.js"></script>
+  <script>
+    // *** Google Analystics ***
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'UA-135382660-4');
+    // *** End: Google Analystics ***
+    //* On Ready
+    $(document).ready(function () {
+      //
+    });
+    //* On Load
+    $(window).on('load', function () {
+      $('#wrap').show();
+      //******************************
+      //*** Init Functions         ***
+      $('#divBrdrContainer').find('*').show();
+      $('#divInstrContainer').children().show();
+      $('#divInstrInner').children().show();
+      $().myCommonPlugin().colInit({
+        footerId: '#footer',
+        rowId: '#myRow0',
+        colIdList: [
+          {
+            'Id': '#col0',
+            'divWrapId': '#divCol0Wrap',
+            'spacerDivId': '#spacerdiv0',
+            'spacerImgId': '#spacerimg0'
+          }
+        ]
+      });
+      $().myCommonPlugin().footerSetter();
+      doResize();
+      //$('#divSplash').fadeOut(2000,function () { });
+      $('#divSplash').fadeOut(2000);;
+    });
+    //* On Resize
+    $(window).resize(function () {
+      doResize();
+    });
+    //* Resize funciton
+    doResize = function () {
+      var myWidth = $('body').outerWidth();
+      if (myWidth > 767) {
+        $('div.myNavbar').removeClass('myNoBottomBorder');
+        $('div.myNavbar').closest('body');
+      }
+      else {
+        //alert('2: '+myWidth);
+        $('div.myNavbar').addClass('myNoBottomBorder');
+        $('div.myNavbar').closest('body');
+        if (myWidth < 720) {
+          var newVideoWidth = parseInt(0.89 * myWidth);
+          var newVideoHeight = parseInt(0.65 * newVideoWidth);
+          $('#videoCtrl').attr("width", newVideoWidth);
+          $('#videoCtrl').attr("height", newVideoHeight);
+        }
+      }
+      $().myCommonPlugin().footerResizer();
+    }
+    //* Get States Data
+    doGetStates = function () {
+      var myUrl = myUtil.myHelper.mySetUrlPath('api/utilInfo/3');
+      $.ajaxSetup({ async: true });
+      var jqxhr = $.get(
+        myUrl,
+        '',
+        function (data, status, xhr) {
+          myUtil.myJsonVar = {};
+          myUtil.myJsonVar.data = data;
+          console.log("Data: " + JSON.stringify(myUtil.myJsonVar));
+          doGetTemplates();
+        },
+        'json'
+      )
+        //.done(function (data, status, xhr) {
+        //    alert("second success");
+        //    debugger;
+        //})
+        .fail(function (data, status, xhr) {
+          console.log("Error retrieiving Json string from: " + myUrl);
+        })
+        //.always(function (data, status, xhr) {
+        //    alert("finished");
+        //    debugger;
+        //})
+        ;
+    };
+    //* Get Ejs templates
+    doGetTemplates = function () {
+      var myUrl = myUtil.myHelper.mySetUrlPath('api/utilInfo/4');
+      var jqxhr = $.get(
+        myUrl,
+        '',
+        function (data, status, xhr) {
+          myUtil.myJsonVar.templateList = data;
+          console.log("Templates: " + JSON.stringify(myUtil.myJsonVar.templateList));
+          doRenderStatesHtml();
+        },
+        'json'
+      )
+        //.done(function (data, status, xhr) {
+        //    alert("second success");
+        //    debugger;
+        //})
+        .fail(function (data, status, xhr) {
+          console.log("Error retrieiving Json string from: " + myUrl);
+        })
+        //.always(function (data, status, xhr) {
+        //    alert("finished");
+        //    debugger;
+        //})
+        ;
 
+    };
+    //* Render States Data;
+    doRenderStatesHtml = function () {
+      myUtil.myHtmlList = [];
+      for (var i = 0, iL = myUtil.myJsonVar.templateList.length; i < iL; i++) {
+        myUtil.myHtmlList.push(ejs.render(myUtil.myJsonVar.templateList[i], myUtil.myJsonVar.data));
+      }
+      doAppendStatesHtml();
+    };
+    //* Append States Html
+    var myTimerObj;
+    var myDoneFunction;
+    var myDnd;
+    doAppendStatesHtml = function () {
+      $('#divCol1Wrap').html(myUtil.myHtmlList[0]);
+      $('#divCol2Wrap').html(myUtil.myHtmlList[1]);
+      $('#divCol3Wrap').html(myUtil.myHtmlList[2]);
+      $('#divHiddenWorkSpace').append(myUtil.myHtmlList[0]);
+      $('#divHiddenWorkSpace').append(myUtil.myHtmlList[1]);
+      $('#divHiddenWorkSpace').append(myUtil.myHtmlList[2]);
+      $('#divHiddenWorkSpace').find('ul').removeClass('connectedSortable').addClass('notConnected');
+      // myTimerObj = vw$TimerFactory();
+      //myTimerObj.eventHandler = function () {
+      //    $('#divDummy').html(myTimerObj.getTime());
+      //};
+      myjQuiDnd = $('#myRow1').find('ul.connectedSortable').ujQuiDndPlugin();
+      myjQuiDnd.init(
+        {
+          onDoneFunction: doDone,
+          mirrorUls: $('#divHiddenWorkSpace').find('ul.notConnected')
+        }
+      );
+      //
+      $('#myRowScore').show().removeAttr('notshow');
+      $('#myRow1').show().removeAttr('notshow');
+      $('#myRow1').children().show().removeAttr('notshow');
+      $('#myRow0').attr("notshow", "true").hide();
+      $().myCommonPlugin().colInit({
+        footerId: '#footer',
+        rowId: '#myRow1',
+        colIdList: [
+          {
+            'Id': '#col1',
+            'divWrapId': '#divCol1Wrap',
+            'spacerDivId': '#spacerdiv1',
+            'spacerImgId': '#spacerimg1'
+          },
+          {
+            'Id': '#col2',
+            'divWrapId': '#divCol2Wrap',
+            'spacerDivId': '#spacerdiv2',
+            'spacerImgId': '#spacerimg2'
+          },
+          {
+            'Id': '#col3',
+            'divWrapId': '#divCol3Wrap',
+            'spacerDivId': '#spacerdiv3',
+            'spacerImgId': '#spacerimg3'
+          }
+        ]
+      });
+      //myTimerObj.start();
+      doResize();
+    };
+    //
+    doDone = function () { alert('Done!'); }
+
+    //* On click handler
+    clickHandler = function (ev) {
+      switch (ev.currentTarget.id) {
+        case 'aViewVideo':
+          $('#divNoteContainer').attr("notshow", "true").hide();
+          $('#divAnimInstr').show().removeAttr('notshow');
+          $('#trVideoButton').attr("notshow", "true").hide();
+          doResize();
+          break;
+        case 'aStartGame':
+          doGetStates();
+          break;
+        case 'aNewGame':
+          //if (myTimerObj) {
+          //    myTimerObj.stop();
+          //}
+          $('#divDummy').html('00:00:00.000');
+          doGetStates();
+          break;
+        case 'aAutoSort':
+          $('#aNewGame').parent().css('opacity', '0.5');
+          $('#aAutoSort').parent().css('opacity', '0.5');
+          doAutoSort();
+          break;
+        default:
+          break;
+      }
+      return false;
+    };
+  </script>
+}
+<div id="jumbo2" style="display:block;" class="jumbotron">
+  <div id="divTlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
+  <div id="divBlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
+  <div id="divLlineJumboCollapsed00" class="myJumboCollapsedLeftRightLine" style="display:block;"></div>
+  <div id="divRlineJumboCollapsed00" class="myJumboCollapsedLeftRightLine" style="display:block;"></div>
+  <div id="divUlCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myUlCrnrImage" style="display:block;"></div>
+  <div id="divUrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myUrCrnrImage" style="display:block;"></div>
+  <div id="divLlCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLlCrnrImage" style="display:block;"></div>
+  <div id="divLrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLrCrnrImage" style="display:block;"></div>
+  <div id="divVwBanner00" style="display:block;"></div>
+  <div id="divCollapsedHeaderLine00" style="display:block;"></div>
+  <div id="divCollapsedHeaderLeft00" class="collapsedHdrLeftRight" style="display:block;"></div>
+  <div id="divCollapsedHeaderRight00" class="collapsedHdrLeftRight" style="display:block;"></div>
+</div>
+<div id="myRow0" class="row myRow myRow0Class">
+  <div id="col0" class="col-md-12">
+    <div id="divTlineBrdrContainer01" class="myBrdrContainerTopBotLine"></div>
+    <div id="divBlineBrdrContainer01" class="myBrdrContainerTopBotLine"></div>
+    <div id="divLlineBrdrContainer01" class="myBrdrContainerLeftRightLine"></div>
+    <div id="divRlineBrdrContainer01" class="myBrdrContainerLeftRightLine"></div>
+    <div id="divUlCrnrBrdrContainer01" class="myBrdrContainerCrnr myUlCrnrImage"></div>
+    <div id="divUrCrnrBrdrContainer01" class="myBrdrContainerCrnr myUrCrnrImage"></div>
+    <div id="divLlCrnrBrdrContainer01" class="myBrdrContainerCrnr myLlCrnrImage"></div>
+    <div id="divLrCrnrBrdrContainer01" class="myBrdrContainerCrnr myLrCrnrImage"></div>
+    <div id="divCol0Wrap" class="col0Wrap">
+      <div id="divInstrContainer" class="instrContainer">
+        <div id="divInstrInner" class="instrInner">
+          <section id="secInstrContainer">
+            <div id="divInstr0" class="divInstrZero">
+              <div id="divInstBackground" class="instrBackground">
+                <div class="dndTitleV2"></div>
+                <div class="welcomePanel" style="text-align:center;"><span>Welcome to another drag and drop demo in the guise of a game!</span></div>
+                <ul class="ulInstr">
+                  <li class="liInstr">Upon hitting the start button below, you will be presented with the names of U.S. States in random order – and a timer will start!</li>
+                  <li class="liInstr">State names that by chance land in their sort order position are removed from play and appear as faded entries.</li>
+                  <li class="liInstr">Select a state by clicking its icon and holding the mouse button down.
+                  <li class="liInstr">
+                    Drag the state to its new position, and drop it by releasting the mouse button.
+                  </li>
+                </ul>
+                <table class="table table-responsive tblInstr">
+                  <tr id="trVideoButton">
+                    <td align="right">To view a video of a move in the game, select this button: </td>
+                    <td><a id="aViewVideo" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">View Instruction Video &raquo;</a></td>
+                  </tr>
+                  <tr id="trStartGameButton">
+                    <td align="right">To start the game, select this button: </td>
+                    <td><a id="aStartGame" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">Start Game &raquo;</a></td>
+                  </tr>
+                </table>
+                <div id="divNoteContainer" class="noteContainer">
+                  <div class="noteHeader">Notes:</div>
+                  <div class="noteInfo">
+                    <p>
+                      Table element based drag and drop has been around for a long time.  It is implemented using
+                      a browser's "mousedown", "mousemove" and "mouseup" events, with the basic HTML document object model insert/append functionality to complete the move of an item.
+                    </p>
+                    <p>
+                      However, this technique is actually quite cumbersome, and employs a bit too much of a "bare metal" approach.  A preferred method would be to take advantage of an available UI framework to minimize and simplify the custom javascript code.
+                      At any rate, the result is that though the concept is simple; the actual implemenation presents some time consuming challenges for the developer.
+                      Further, mehtod is not easily generalized or extended.  And, as is, it will not work on mobile devices -- as they employ "touchstart", "touchmove" and "touchend" events (rather than "mousedown", "mousemove" and "mouseup").
+                    </p>
+                    <p>
+                      Still, I admit to being rather pleased with the result.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="divAnimInstr" style="text-align:center;width:100%;display:none;" notshow="true">
+              <div style="display:inline-block;">
+                <div>
+                  <video id="videoCtrl" width="640" height="419" controls muted preload="auto">
+                    <source src="../images/dndInstrShort.mp4" type="video/mp4">
+                  </video>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    <div id="spacerdiv0" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;text-align:center;">
+      <img id="spacerimg0" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+    </div>
+  </div>
+</div>
+<div id="myRow1" class="row myRow" style="clear:both;position:relative;top:0;display:none;background:url(../images/bgDamascus03.png);background-repeat:repeat;" notshow="true">
+  <div id="col1" class="col-md-4 myColMd4Left" style="display:none;background:transparent;" notshow="true">
+    <div id="divCol1Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
+    </div>
+    <ul class="ulWorkSpace" style="background: transparent;color:transparent; list-style: none;"></ul>
+    <div id="spacerdiv1" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+      <img id="spacerimg1" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+    </div>
+  </div>
+  <div id="col2" class="col-md-4 myColMd4Center" style="display:none;background:transparent;" notshow="true">
+    <div id="divCol2Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
+    </div>
+    <ul class="ulWorkSpace" style="background: transparent;color:transparent; list-style: none;"></ul>
+    <div id="spacerdiv2" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+      <img id="spacerimg2" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+    </div>
+  </div>
+  <div id="col3" class="col-md-4 myColMd4Right" style="display:none;background:transparent;" notshow="true">
+    <div id="divCol3Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
+    </div>
+    <ul class="ulWorkSpace" style="background: transparent;color:transparent; list-style: none;"></ul>
+    <div id="spacerdiv3" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+      <img id="spacerimg3" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+    </div>
+  </div>
+</div>

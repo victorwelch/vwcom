@@ -28,6 +28,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Views\Dev\" />
     <Folder Include="wwwroot\bgImages\" />
   </ItemGroup>
 

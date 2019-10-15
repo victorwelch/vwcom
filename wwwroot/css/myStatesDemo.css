@@ -1,0 +1,388 @@
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+/* Settings for CapitalStatesOne View                                                             */
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+.d-none {
+  display: none;
+}
+
+.myRow0Class {
+  clear: both;
+  position: relative;
+  top: 0;
+}
+
+.col0Wrap {
+  clear: both;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.instrContainer {
+  clear: both;
+  border-top: 15px solid black;
+  position: relative;
+  margin: 0px;
+  padding: 0 0 10px 0;
+  background: url(../images/bgStatesMap01.png);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.instrInner {
+  padding: 15px;
+}
+
+.instrBackground {
+  background: url(../images/bgWhiteOpacity45.png);
+  background-repeat: repeat;
+  border-radius: 25px;
+  border: 1px solid black;
+  vertical-align: text-top;
+  padding-left: 18px;
+  padding-right: 15px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+
+.welcomePanel {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+div.scoreContainer {
+  width: 60%;
+  height: 100%;
+  border: 5px solid #ddd;
+  background: #808080;
+  text-align: center;
+  display: inline-block;
+}
+
+div.scoreContainerOutline {
+  width: 100%;
+  height: 100%;
+  border: 1px solid black;
+  background: transparent;
+  text-align: center;
+  display: inline-block;
+  padding-top: 6px;
+}
+
+div.scoreContainerInner {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: inline-block;
+}
+
+div.dndTitleV1 {
+  width: 400px;
+  height: 32px;
+  position: relative;
+  left: 50%;
+  margin-left: -200px;
+  background: url(../images/dndTitleV1.png) no-repeat;
+  background-size: cover;
+  border-bottom: 1px solid #000;
+}
+div.dndTitleV2 {
+  width: 450px;
+  height: 24px;
+  position: relative;
+  left: 50%;
+  margin-left: -225px;
+  background: url(../images/dndTitleV2.png) no-repeat;
+  background-size: cover;
+  border-bottom: 1px solid #000;
+}
+
+div.noteContainer {
+  position: relative;
+  width: 600px;
+  left: 50%;
+  margin-left: -300px;
+  border-radius: 5px;
+  background: #fff;
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 2px 0px 0px 5px;
+}
+
+div.noteHeader {
+  float: left;
+  font: bold 15px arial, verdana;
+  display: inline;
+  width: 55px;
+  overflow: auto;
+}
+
+div.noteInfo {
+  float: left;
+  font: 11px arvo;
+  display: inline;
+  width: 525px;
+  overflow: auto;
+  padding-top: 2px;
+}
+
+  div.noteInfo > p {
+    margin-bottom: 7px;
+  }
+
+    div.noteInfo > p:last-child {
+      margin-bottom: 10px;
+    }
+
+@media (max-width: 992px) {
+  .scoreContainer {
+    width: 90%;
+  }
+}
+
+div.rowScore {
+  clear: both;
+  position: relative;
+  top: 0;
+  display: none;
+  background: url(../images/bgDamascus03.png) repeat;
+  border-top: 15px solid black;
+  text-align: center;
+}
+
+.statesRowOne {
+  clear: both;
+  position: relative;
+  top: 0;
+  display: none;
+  background: url(../images/bgDamascus03.png);
+  background-repeat: repeat;
+}
+
+.timerInfo {
+  background: #ddd;
+  color: black;
+  width: 170px;
+  margin: 8px;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid black;
+  font-size: 18px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+#trVideoButton {
+  background-color: #b9b9b9;
+}
+
+#trStartGameButton {
+  background-color: #c9c9c9;
+}
+
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+/* Dnd Stuff                                                                                      */
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+.tg {
+  border-collapse: collapse;
+  border-spacing: 0;
+  background: url(../images/touchIcon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+tr.myDragTr, div.myDragTr {
+  background-color: khaki;
+  opacity: 0.70;
+  border-top: solid 1px transparent;
+}
+
+tr.myFlashTr {
+  background-color: yellow;
+  opacity: 0.65;
+}
+
+tr.myDoneTr {
+  background-color: white;
+  opacity: 0.25;
+}
+
+tr.myOccupy {
+  background-color: black;
+}
+
+table.tg {
+  background: url(../images/bgVintage.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-right: 5px solid black;
+}
+
+table.states {
+  width: 170px;
+}
+
+table.donestates {
+  width: 170px;
+}
+
+.tg td {
+  font-family: Arial,sans-serif;
+  font-size: 14px;
+  padding: 2px 5px;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  word-break: normal;
+  border-color: black;
+}
+
+div.tg2 {
+  font-family: Arial,sans-serif;
+  font-size: 14px;
+  padding: 2px 5px;
+}
+
+.tg .tg-zax, td.tg-zax, div.tg-zax {
+  vertical-align: middle;
+  height: 27px;
+  width: 32px;
+}
+
+div.tg-zax {
+  display: inline-block;
+  position: relative;
+  width: 100%;
+}
+
+td.tgCenter {
+  text-align: center;
+}
+
+td.myTdCol {
+  vertical-align: top;
+}
+
+td.myTdColSeparator {
+  border-left-color: transparent;
+  border-left-style: solid;
+  border-left-width: 20px;
+}
+
+div.stateDiv {
+  padding-top: 2px;
+  float: left;
+  display: inline-block;
+  position: relative;
+}
+
+div.iconDiv {
+  background: url(../images/touchIcon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 15px;
+  height: 20px;
+  float: left;
+  margin-right: 4px;
+  position: relative;
+  display: inline-block;
+}
+
+  div.iconDiv:hover {
+    cursor: pointer;
+  }
+
+div.iconDivNoHover {
+  background: url(../images/touchIcon.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 15px;
+  height: 20px;
+  float: left;
+  margin-right: 4px
+}
+
+div.orderDiv {
+  width: 14px;
+  text-align: center;
+  font-style: italic;
+  padding-right: 4px;
+}
+
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+/* Jquery UI Stuff                                                                                      */
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+ul.connectedSortable {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 50px;
+  width: 220px;
+  list-style: none;
+}
+
+li.ui-state-highlight {
+  height: 27px;
+  background: #000;
+  border: none;
+}
+
+li.ui-state-default {
+  background: url(../images/bgVintage.png);
+  border: none;
+  border-bottom: 2px solid #000;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 2px 5px;
+  height: 26px;
+}
+
+li.ui-state-default:hover {
+    cursor: pointer;
+  }
+li.ui-state-disabled {
+  background: #fff;
+  opacity: 0.75;
+}
+
+div.ul-container {
+  position: relative;
+  text-align: left;
+}
+
+div.sortNum {
+  background: url(../images/bgVintage.png);
+  border-bottom: 2px solid #000;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  top: 0;
+  left: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-weight: normal;
+  font-size: 14px;
+  padding: 2px 0px;
+}
+
+li.moveBg {
+  opacity: 0.9;
+  border: none;
+  background: cornflowerblue;
+}
+li.myFlashLi {
+  background-color: yellow;
+}
+ul.notConnected {
+  position:relative;
+}

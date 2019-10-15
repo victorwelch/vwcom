@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,8 +16,10 @@ namespace vwcom.Services
     {
         string getWebMapPath(string arg = null);
         List<string> getImgList();
-    }
-    public class FileUtilService : IFileUtilService
+        List<string> getStatesOneTemplates();
+        List<string> getStatesTwoTemplates();
+  }
+  public class FileUtilService : IFileUtilService
     {
         private FileUtilHelper myUtilHelper;
         public FileUtilService()
@@ -42,5 +44,11 @@ namespace vwcom.Services
             myRtn = this.myUtilHelper.getStatesOneTemplates();
             return myRtn;
         }
-    }
+        public List<string> getStatesTwoTemplates()
+        {
+          List<string> myRtn = new List<string>();
+          myRtn = this.myUtilHelper.getStatesTwoTemplates();
+          return myRtn;
+        }
+  }
 }

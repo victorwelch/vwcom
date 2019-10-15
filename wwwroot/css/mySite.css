@@ -1115,33 +1115,33 @@
         -ms-transform-style: none;
     }
 
-        #ieCube figure {
-            display: block;
-            position: absolute;
-            width: 1009px;
-            height: 254px;
-            top: 10.5px;
-            left: 45.5px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 0;
-            margin-bottom: 0;
-            -webkit-backface-visibility: hidden;
-            -moz-backface-visibility: hidden;
-            -o-backface-visibility: hidden;
-            backface-visibility: hidden;
-            -ms-backface-visibility: hidden;
-            -webkit-transform-origin: 50% 50% 0px;
-            -moz-transform-origin: 50% 50% 0px;
-            -o-transform-origin: 50% 50% 0px;
-            -ms-transform-origin: 50% 50% 0px;
-            transform-origin: 50% 50% 0px;
-            -webkit-transition: -webkit-transform 2s;
-            -moz-transition: -moz-transform 2s;
-            -o-transition: -o-transform 2s;
-            transition: transform 2s;
-            -ms-transition: transform 2s;
-        }
+    #ieCube figure {
+        display: block;
+        position: absolute;
+        width: 1009px;
+        height: 254px;
+        top: 10.5px;
+        left: 45.5px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 0;
+        margin-bottom: 0;
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -o-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        -webkit-transform-origin: 50% 50% 0px;
+        -moz-transform-origin: 50% 50% 0px;
+        -o-transform-origin: 50% 50% 0px;
+        -ms-transform-origin: 50% 50% 0px;
+        transform-origin: 50% 50% 0px;
+        -webkit-transition: -webkit-transform 2s;
+        -moz-transition: -moz-transform 2s;
+        -o-transition: -o-transform 2s;
+        transition: transform 2s;
+        -ms-transition: transform 2s;
+    }
 
     @media (min-width: 768px) {
         #ieCube figure {
@@ -1236,10 +1236,10 @@
         padding-inline-start: 10px;
     }
 
-        ul.myInline li {
-            display: inline-block;
-            padding-left: 10px;
-        }
+    ul.myInline li {
+        display: inline-block;
+        padding-left: 10px;
+    }
     /* *********************************************************************************************  */
     /* *********************************************************************************************  */
     /* Set Display Inline Block                                                                       */
@@ -1270,87 +1270,6 @@
 
     /* *********************************************************************************************  */
     /* *********************************************************************************************  */
-    /* Settings for CapitalStatesOne View                                                             */
-    /* *********************************************************************************************  */
-    /* *********************************************************************************************  */
-    .d-none {
-        display: none;
-    }
-
-    .myRow0Class {
-        clear: both;
-        position: relative;
-        top: 0;
-    }
-
-    .col0Wrap {
-        clear: both;
-        position: relative;
-        top: 0;
-        left: 0;
-    }
-
-    .instrContainer {
-        clear: both;
-        border-top: 15px solid black;
-        position: relative;
-        margin: 0px;
-        padding: 0px;
-        background: url(../images/bgStatesMap01.png);
-        background-size: contain;
-        background-position: center;
-        background-repeat: no-repeat;
-        margin-right: -15px;
-        margin-left: -15px;
-    }
-
-    .instrInner {
-        padding: 15px;
-    }
-
-    .instrBackground {
-        background: url(../images/bgWhiteOpacity45.png);
-        background-repeat: repeat;
-        border-radius: 25px;
-        border: 1px solid black;
-        vertical-align: text-top;
-        padding-left: 18px;
-        padding-right: 15px;
-        padding-top: 5px;
-        padding-bottom: 10px;
-        margin-top: 25px;
-        margin-bottom: 30px;
-    }
-
-    .welcomePanel {
-        border-bottom: solid 2px black;
-        margin-top: 8px;
-    }
-
-    .scoreContainer {
-        width: 60%;
-        height: 100%;
-        border: 5px solid #ddd;
-        background: #808080;
-        text-align: center;
-        display: inline-block;
-    }
-
-    @media (max-width: 992px) {
-        .scoreContainer {
-            width: 90%;
-        }
-    }
-
-    #trVideoButton {
-        background-color: #b9b9b9;
-    }
-
-    #trStartGameButton {
-        background-color: #c9c9c9;
-    }
-    /* *********************************************************************************************  */
-    /* *********************************************************************************************  */
     /* Make btns & ul/li smaller                                                                      */
     /* *********************************************************************************************  */
     /* *********************************************************************************************  */
@@ -1366,6 +1285,7 @@
     }
 
     .liInstr {
+        font-size:12px;
         font-weight: bold;
         margin-bottom: 6px;
     }
@@ -1418,134 +1338,4 @@
             padding-left: 5px;
             padding-right: 5px;
         }
-    }
-    /* *********************************************************************************************  */
-    /* *********************************************************************************************  */
-    /* Dnd Stuff                                                                                      */
-    /* *********************************************************************************************  */
-    /* *********************************************************************************************  */
-    .tg {
-        border-collapse: collapse;
-        border-spacing: 0;
-        background: url(../images/touchIcon.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    tr.myDragTr, div.myDragTr {
-        background-color: khaki;
-        opacity: 0.70;
-        border-top: solid 1px transparent;
-    }
-
-    tr.myFlashTr {
-        background-color: yellow;
-        opacity: 0.65;
-    }
-
-    tr.myDoneTr {
-        background-color: white;
-        opacity: 0.25;
-    }
-
-    tr.myOccupy {
-        background-color: black;
-    }
-
-    table.tg {
-        background: url(../images/bgVintage.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        border-right: 5px solid black;
-    }
-
-    table.states {
-        width: 170px;
-    }
-
-    table.donestates {
-        width: 170px;
-    }
-
-    .tg td {
-        font-family: Arial,sans-serif;
-        font-size: 14px;
-        padding: 2px 5px;
-        border-style: solid;
-        border-width: 1px;
-        overflow: hidden;
-        word-break: normal;
-        border-color: black;
-    }
-
-    div.tg2 {
-        font-family: Arial,sans-serif;
-        font-size: 14px;
-        padding: 2px 5px;
-    }
-
-    .tg .tg-zax, td.tg-zax, div.tg-zax {
-        vertical-align: middle;
-        height: 27px;
-        width: 32px;
-    }
-
-    div.tg-zax {
-        display: inline-block;
-        position: relative;
-        width: 100%;
-    }
-
-    td.tgCenter {
-        text-align: center;
-    }
-
-    td.myTdCol {
-        vertical-align: top;
-    }
-
-    td.myTdColSeparator {
-        border-left-color: transparent;
-        border-left-style: solid;
-        border-left-width: 20px;
-    }
-
-    div.stateDiv {
-        padding-top: 2px;
-        float: left;
-        display: inline-block;
-        position: relative;
-    }
-
-    div.iconDiv {
-        background: url(../images/touchIcon.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 15px;
-        height: 20px;
-        float: left;
-        margin-right: 4px;
-        position: relative;
-        display: inline-block;
-    }
-
-        div.iconDiv:hover {
-            cursor: pointer;
-        }
-
-    div.iconDivNoHover {
-        background: url(../images/touchIcon.png);
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 15px;
-        height: 20px;
-        float: left;
-        margin-right: 4px
-    }
-
-    div.orderDiv {
-        width: 14px;
-        text-align: center;
-        font-style: italic;
-        padding-right: 4px;
     }

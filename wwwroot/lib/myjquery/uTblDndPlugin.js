@@ -5,7 +5,7 @@
         var mySelf = this;
 
         /* ******************************************************************************** */
-        // Global prototyeps
+        // Global prototypes
         //
 
         //
@@ -245,8 +245,8 @@
             uObj.uInfoObj = uInfoObj;
             $('body').bind('mousemove', myMouseMove);
             $('body').bind('mouseup', myMouseUp);
-            $('body').css('cursor', 'move');
-            $('body').find('*').css('cursor', 'move');
+            $('#myContainer').css('cursor', 'move');
+            $('#myContainer').find('*').css('cursor', 'move');
             $(this).css('cursor', 'move');
             vw$SetGlobal('isBusy', false);
             return false;
@@ -255,11 +255,10 @@
         var createIndexObjFactory = function () {
             var myRtn = null;
             var indexObj = function () {
-                this.scoreBoard = {};
+                this.scoreBoard = [].setValues(50,false);
                 this.mirrorTblListCopy = {};
             };
-            indexObj.prototype.init = function (myScoreBoard) {
-                this.scoreBoard = myScoreBoard;
+            indexObj.prototype.init = function () {
                 var row;
                 var allRowList = $().getAllRowList();
                 for (let i = 0, iEnd = allRowList.length; i < iEnd; i++) {
@@ -363,11 +362,10 @@
                 }
             };
             indexObj.prototype.setDone = function (idx) {
-                this.scoreBoard[idx].isStateDone = true;
+                this.scoreBoard[idx] = true;
             };
             indexObj.prototype.isDone = function (idx) {
-
-                return this.scoreBoard[idx].isStateDone;
+                return (this.scoreBoard[idx])?true:false;
             };
             //
             myRtn = new indexObj();
@@ -733,9 +731,9 @@
                 rowFlash();
                 $('body').unbind('mousemove', myMouseMove);
                 $('body').unbind('mouseup', myMouseUp);
-                $('body').css('cursor', 'default');
-                $('body').find('*').css('cursor', 'default');
-                $('body').find("[dndbtn]").css("cursor", "pointer");
+                $('#myContainer').css('cursor', 'default');
+                $('#myContainer').find('*').css('cursor', 'default');
+                $('#myContainer').find("[dndbtn]").css("cursor", "pointer");
             }
             $().getAllRowList().find("[dndbtn]").unbind('mousedown', myMouseDown);
             $().getAllRowList().find("[dndbtn]").bind('mousedown', myMouseDown);
@@ -800,7 +798,7 @@
                     canvasId: 'myRow1',
                     onDragClassTr: 'myDragTr',
                     onDoneClassTr: 'myDoneTr',
-                    onDoneFunction: function () { alert('Done!'); },
+                    onDoneFunction: function () {},
                     scrollAmount: 150
                 }, options);
                 uDndTblList.curr = mySelf;
@@ -827,10 +825,6 @@
                     uObj.onDoneFunction = settings.onDoneFunction;
                     vw$SetGlobal('onDoneFunction', settings.onDoneFunction);
                 }
-                if (settings.scoreBoard) {
-                    uObj.scoreBoard = settings.scoreBoard;
-                    vw$SetGlobal('scoreBoard', settings.scoreBoard);
-                }
                 if (settings.mirrorTables) {
                     uObj.mirrorTblList = settings.mirrorTables;
                     vw$SetGlobal('mirrorTblList', settings.mirrorTables);
@@ -844,7 +838,7 @@
                 //
                 // Initialize the rows accidentally in sort order
                 uObj.indexObj = new createIndexObjFactory();
-                uObj.indexObj.init(uObj.scoreBoard);
+                uObj.indexObj.init();
                 //dummy = null;
                 //
                 uObj.auto = {};
@@ -872,8 +866,8 @@
                         this.pos = {};
                         this.destPos = {};
                         this.destRowIdx = {};
-                        $('body').css('pointer-events', 'none');
-                        $('#divBodyCover').show();
+                        $('#divContainerCover').css('pointer-events', 'none');
+                        $('#divContainerCover').show();
                         this.calcSteps = function () {
                             this.stepList = [];
                             var x1 = this.pos.left;
@@ -947,8 +941,8 @@
                             vw$SetGlobal('autoContext', this);
                             this.intervalTimer = setInterval(this.autoStep, 150);
                         } else {
-                            $('body').css('pointer-events', 'auto');
-                            $('#divBodyCover').hide();
+                            $('#divContainerCover').css('pointer-events', 'auto');
+                            $('#divContainerCover').hide();
                         }
                     };
                     autoObj.prototype.autoStep = function () {

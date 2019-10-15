@@ -1,4 +1,4 @@
-﻿// *** Google Analystics ***
+// *** Google Analystics ***
 window.dataLayer = window.dataLayer || [];
 function gtag() { dataLayer.push(arguments); }
 gtag('js', new Date());
@@ -135,12 +135,10 @@ doAppendStatesHtml = function () {
     myTimerObj.eventHandler = function () {
         $('#divDummy').html(myTimerObj.getTime());
     };
-    myDoneFunction = function () { myTimerObj.stop(); myDnd = null; alert('Sorted!!!'); };
     myDnd = $('#myRow1').find('table.states').uTblDndPlugin();
     myDnd.init(
         {
-            onDoneFunction: myDoneFunction,
-            scoreBoard: myUtil.myJsonVar.data.scoreBoardList,
+            onDoneFunction: doDone,
             mirrorTables: $('#divHiddenWorkSpace').find('table.states')
         }
     );
@@ -182,10 +180,16 @@ doAutoSort = function () {
         myDnd.auto();
     }
 };
+doDone = function () {
+    myTimerObj.stop();
+    $('#aNewGame').parent().css('opacity', '');
+    $('#aAutoSort').parent().css('opacity', '');
+}
 //* On click handler
 clickHandler = function (ev) {
     switch (ev.currentTarget.id) {
         case 'aViewVideo':
+            $('#divNoteContainer').attr("notshow", "true").hide();
             $('#divAnimInstr').show().removeAttr('notshow');
             $('#trVideoButton').attr("notshow", "true").hide();
             doResize();
@@ -194,9 +198,15 @@ clickHandler = function (ev) {
             doGetStates();
             break;
         case 'aNewGame':
+            if (myTimerObj) {
+                myTimerObj.stop();
+            }
+            $('#divDummy').html('00:00:00.000');
             doGetStates();
             break;
         case 'aAutoSort':
+            $('#aNewGame').parent().css('opacity','0.5');
+            $('#aAutoSort').parent().css('opacity', '0.5');
             doAutoSort();
             break;
         default:
