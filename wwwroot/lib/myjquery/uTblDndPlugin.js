@@ -281,12 +281,13 @@
                 var gContext = vw$GetGlobal('gContext');
                 var doneRowList = $().getDoneRowList();
                 var doneRow = {};
+                var rowSortedIndex;
+                var allRowList;
                 //
                 if (isErr()) {
                     this.mirrorTblListCopy = vw$GetGlobal('mirrorTblList').clone();
                     var mirrorAllRowList = this.mirrorTblListCopy.find('tr');
                     var mirrorRow = {};
-                    var rowSortedIndex;
                     for (let i = 0, iEnd = doneRowList.length; i < iEnd; i++) {
                         doneRow = doneRowList.eq(i);
                         rowSortedIndex = parseInt(doneRow.attr('allIndex'));
@@ -305,7 +306,7 @@
                         tblList.eq(i).html(this.mirrorTblListCopy.eq(i).html());
                     }
                     //
-                    var allRowList = $().getAllRowList();
+                    allRowList = $().getAllRowList();
                     for (let i = 0, iEnd = allRowList.length; i < iEnd; i++) {
                         allRowList.eq(i).closest('table').closest('body');
                     }
@@ -331,7 +332,7 @@
                 }
                 function isErr() {
                     myRtn = false;
-                    var allRowList = $().getAllRowList();
+                    allRowList = $().getAllRowList();
                     var doneRowIdx;
                     for (let i = 0, iEnd = doneRowList.length; i < iEnd; i++) {
                         doneRow = doneRowList.eq(i);

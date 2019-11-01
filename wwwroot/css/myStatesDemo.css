@@ -333,14 +333,26 @@ ul.connectedSortable {
 
 li.ui-state-highlight {
   height: 27px;
-  background: #000;
   border: none;
 }
 
 li.ui-state-default {
+  display: block;
+  width:100%;
   background: url(../images/bgVintage.png);
   border: none;
   border-bottom: 2px solid #000;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  padding: 2px 5px;
+  height: 26px;
+}
+
+li.ui-sortable-placeholder {
+  display: block;
+  width: 100%;
+  background: #000;
+  border: none;
   font-family: Arial, sans-serif;
   font-size: 14px;
   padding: 2px 5px;
@@ -351,6 +363,8 @@ li.ui-state-default:hover {
     cursor: pointer;
   }
 li.ui-state-disabled {
+  display: block;
+  width: 100%;
   background: #fff;
   opacity: 0.75;
 }
