@@ -395,7 +395,7 @@ li.moveBg {
   background: cornflowerblue;
 }
 li.myFlashLi {
-  background-color: yellow;
+  background: yellow;
 }
 ul.notConnected {
   position:relative;
