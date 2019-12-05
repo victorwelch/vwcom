@@ -393,6 +393,8 @@ li.moveBg {
   opacity: 0.9;
   border: none;
   background: cornflowerblue;
+  position: relative;
+  z-index:45;
 }
 li.myFlashLi {
   background: yellow;

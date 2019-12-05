@@ -5,7 +5,7 @@
         var mySelf = this;
 
         /* ******************************************************************************** */
-        // Global prototyeps
+        // Global prototypes
         //
 
         //
@@ -101,7 +101,7 @@
             return vw$GetGlobal('ulListInit').find('li');
         };
         jQuery.fn.getDoneLiList = function () {
-            var myRtn = vw$GetGlobal('ulListInit').find('li.'+vw$GetGlobal('onDoneClassLi'));
+            var myRtn = vw$GetGlobal('ulListInit').find('li.' + vw$GetGlobal('onDoneClassLi'));
             return myRtn;
         };
         jQuery.fn.getUlList = function () {
@@ -119,41 +119,53 @@
         /*
         /*** Assign mousedown event to DnD buttons ***/
         var myMakeUlDnd = function () {
-            var ulList = $().getUlList();
-            ulList.sortable({
+            uObj.ulListSortable = $().getUlList();
+            uObj.sortableObj = uObj.ulListSortable.sortable({
                 connectWith: ".connectedSortable",
-                placeholder: "ui-sortable-placeholder"
+                distance: 0,
+                helper: "clone",
+                placeholder: "ui-sortable-placeholder",
+                refreshPositions: true
             }).disableSelection();
-            $().getAllLiList().bind('mousedown', doMouseDown);
+            uObj.sortableObj.on("sortstart", function (event, ui) { vw$GetGlobal('gContext').doMouseDown(event, ui); });
+            //$().getAllLiList().bind('mousedown', doMouseDown);
         };
         //
-        var doMouseDown = function (e) {
-            if (vw$SetGlobal('isBusy')) {
-                return;
-            } else {
-                vw$SetGlobal('isBusy', true);
-            }
+        var doMouseDown = function (ev, ui) {
+            //debugger;
+            vw$SetGlobal('isBusy', true);
+            //ev.preventDefault();
+            //ev.stopPropagation();
+            //ev = ifAuto(ev);
+            uObj.helper = ui.helper;
             uObj.indexObj = createIndexObjFactory();
             uObj.indexObj.init();
             var holderIdxObj = { liIdx: -1, ulIdx: -1 };
             vw$SetGlobal('lastHolderIdxObj', holderIdxObj);
-            $(this).css('cursor', 'move');
-            $(this).addClass('moveBg');
-            $(this).bind('mouseup', doMouseUp);
-            $(this).bind('mousemove', doMouseMove);
-            $('body').bind('mousemove', doMouseMove);
-            $('#myContainer').css('cursor', 'move');
-            $('#myContainer').find('*').css('cursor', 'move');
-            $(this).css('cursor', 'move');
+            uObj.helper.css('cursor', 'move');
+            uObj.helper.addClass('moveBg');
+            uObj.sortableObj.on("sort", function (event, ui) { debugger; vw$GetGlobal('gContext').doMouseMove(event, ui); });
+            //$(this).bind('mouseup', doMouseUp);
+            //$('body').bind('mouseup', doMouseUp);
+            //$(this).bind('mousemove', doMouseMove);
+            //$('#myContainer').bind('mousemove', doMouseMove);
+            //$('#myContainer').css('cursor', 'move');
+            //$('#myContainer').find('*').css('cursor', 'move');
+            //$(this).css('cursor', 'move');
             vw$SetGlobal('isBusy', false);
+            return true;
         };
         //
-        var doMouseMove = function (ev) {
+        var doMouseMove = function (ev, ui) {
+            debugger;
             if (vw$SetGlobal('isBusy')) {
                 return;
             } else {
                 vw$SetGlobal('isBusy', true);
             }
+            //ev.preventDefault();
+            //ev.stopPropagation();
+            //ev = ifAuto(ev);
             var allLiList = $().getAllLiList();
             var currHolderLi = allLiList.filter('li.ui-sortable-placeholder').first();
             var currHolderUl = currHolderLi.parent();
@@ -173,6 +185,7 @@
                 }
             }
             vw$SetGlobal('isBusy', false);
+            return true;
         };
         //
         var createIndexObjFactory = function () {
@@ -228,16 +241,16 @@
                 var mirrorUlList;
                 var mirrorAllLiList;
                 var mirrorNotDoneLiList;
-                var mirrorDoneLiList; 
+                var mirrorDoneLiList;
                 //
                 if (isErr()) {
                     mirrorUlList = $().getUlList().clone();
                     mirrorUlList.removeClass('connectedSortable').addClass('notConnected');
-                    mirrorUlList.find('li:not(li.ui-sortable-helper)').attr('class', '');
+                    mirrorUlList.find('li:not(li.moveBg)').attr('class', '');
                     mirrorUlList.find('li').addClass('ui-state-default').addClass('ui-sortable-handle');
                     doneLiList = ulList.find('li.' + vw$GetGlobal('onDoneClassLi'));
                     while (doneLiList.length > 0) {
-                        mirrorAllLiList = mirrorUlList.find('li:not(li.ui-sortable-helper)');
+                        mirrorAllLiList = mirrorUlList.find('li:not(li.moveBg)');
                         doneLi = doneLiList.eq(0);
                         liSortedIndex = parseInt(doneLi.attr('allIndex'));
                         mirrorAllLiList.eq(liSortedIndex).replaceWith(doneLi);
@@ -259,7 +272,7 @@
                     var isHelper;
                     var ctr = 0;
                     while ((kidx = mirrorAllLiList.loop()) > -1) {
-                        isHelper = (mirrorAllLiList.eq(kidx).hasClass('ui-sortable-helper'));
+                        isHelper = (mirrorAllLiList.eq(kidx).hasClass('moveBg'));
                         if (ctr < 17) {
                             ulList.eq(0).append(mirrorAllLiList.eq(kidx));
                         } else if (ctr < 34) {
@@ -284,8 +297,8 @@
                 //
                 function isErr() {
                     myRtn = false;
-                    allLiList = $().getAllLiList().not('li.ui-sortable-helper');
-                    var myDoneLiList = $().getDoneLiList(); 
+                    allLiList = $().getAllLiList().not('li.moveBg');
+                    var myDoneLiList = $().getDoneLiList();
                     var doneLiIdx;
                     while ((kidx = myDoneLiList.loop()) > -1) {
                         doneLi = myDoneLiList.eq(kidx);
@@ -306,11 +319,11 @@
                 var fmUlIdx = -1;
                 var liDoneList;
                 var fmLi, toLi;
-                while (isErr()) {
+                if (isErr()) {
                     if (fmUlIdx > toUlIdx) {
-                        liDoneList = ulList.eq(fmUlIdx).find('li.' + vw$GetGlobal('onDoneClassLi') + ',li.ui-sortable-helper');
+                        liDoneList = ulList.eq(fmUlIdx).find('li.' + vw$GetGlobal('onDoneClassLi') + ',li.moveBg');
                         fmLi = ulList.eq(fmUlIdx).find('li').not(liDoneList).first();
-                        liDoneList = ulList.eq(toUlIdx).find('li.' + vw$GetGlobal('onDoneClassLi') + 'li.ui-sortable-helper');
+                        liDoneList = ulList.eq(toUlIdx).find('li.' + vw$GetGlobal('onDoneClassLi') + 'li.moveBg');
                         toLi = ulList.eq(toUlIdx).find('li').not(liDoneList).last();
                         if (toLi.length > 0) {
                             fmLi.insertAfter(toLi);
@@ -318,9 +331,9 @@
                             ulList.eq(toUlIdx).append(fmLi);
                         }
                     } else if (fmUlIdx < toUlIdx) {
-                        liDoneList = ulList.eq(fmUlIdx).find('li.' + vw$GetGlobal('onDoneClassLi') + 'li.ui-sortable-helper');
+                        liDoneList = ulList.eq(fmUlIdx).find('li.' + vw$GetGlobal('onDoneClassLi') + 'li.moveBg');
                         fmLi = ulList.eq(fmUlIdx).find('li').not(liDoneList).last();
-                        liDoneList = ulList.eq(toUlIdx).find('li.' + vw$GetGlobal('onDoneClassLi') + ',li.ui-sortable-helper');
+                        liDoneList = ulList.eq(toUlIdx).find('li.' + vw$GetGlobal('onDoneClassLi') + ',li.moveBg');
                         toLi = ulList.eq(toUlIdx).find('li').not(liDoneList).first();
                         if (toLi.length > 0) {
                             fmLi.insertBefore(toLi);
@@ -338,7 +351,7 @@
                     var initSize;
                     var fidx = 0;
                     while ((fidx = ulList.loop()) > -1) {
-                        currSize = ulList.eq(fidx).find('li:not(ui-sortable-helper)').length;
+                        currSize = ulList.eq(fidx).find('li:not(li.moveBg)').length;
                         initSize = parseInt(ulList.eq(fidx).attr('ullength'));
                         if (currSize < initSize) {
                             toUlIdx = fidx;
@@ -369,23 +382,22 @@
 
         /*** Mouseup event handler ***/
         var doMouseUp = function (ev) {
-            if (vw$SetGlobal('isBusy')) {
-                return;
-            } else {
-                vw$SetGlobal('isBusy', true);
-            }
-            var droppedLi = $(this);
             vw$SetGlobal('isBusy', true);
-            ev = ifAuto(ev);
+            //ev.preventDefault();
+            //ev.stopPropagation();
             setTimeout(function () {
-                doMouseUpWait(droppedLi);
-            },100);
+                doMouseUpWait();
+            }, 100);
         };
-        var doMouseUpWait = function (pDroppedLi) {
-            pDroppedLi.closest('ul').closest('div').closest('body');
-            liFlash(pDroppedLi);
-            pDroppedLi.unbind('mousemove', doMouseMove);
+        var doMouseUpWait = function () {
+            uObj.droppedLi = $('#myRow1').find('li.moveBg');
+            uObj.droppedLi.closest('ul').closest('div').closest('body');
+            liFlash(uObj.droppedLi);
+            uObj.droppedLi.unbind('mousemove', doMouseMove);
             $('body').unbind('mousemove', doMouseMove);
+            uObj.droppedLi.unbind('mouseup', doMouseUp);
+            $('body').find().unbind('mousemove', doMouseMove);
+            $('body').unbind('mouseup', doMouseUp);
             $('#myContainer').css('cursor', 'default');
             $('#myContainer').find('*').css('cursor', 'default');
             $('#myContainer').find("ul.connectedSortable").children('li').css("cursor", "pointer");
@@ -401,13 +413,13 @@
                 }, 150);
 
                 function liOn(_dLi) {
-                    _dLi.removeClass('moveBg');
                     if (_dLi.isLiOrdered()) {
                         _dLi.unbind('mousedown', doMouseDown);
                         var allLiIdx = _dLi.getAllLiIdx();
                         uObj.indexObj.setDone(allLiIdx);
                         _dLi.addClass(vw$GetGlobal('onDoneClassLi'));
                     }
+                    _dLi.removeClass('moveBg');
                     _dLi.addClass('myFlashLi');
                     _dLi.closest('ul').closest('div').closest('body');
                 }
@@ -427,10 +439,15 @@
         };
         //
         var ifAuto = function (ev) {
-            //if (uObj.auto.isAutoOn) {
-            //ev.pageX = uObj.auto.mouseX;
-            //ev.pageY = uObj.auto.mouseY;
-            //}
+            var saveX, saveY;
+            if (uObj.auto.isAutoOn) {
+                if ((ev.type.toLowerCase().indexOf('mousemove') > -1) || (ev.type.toLowerCase().indexOf('mouseup') > -1)) {
+                    ev.pageX = uObj.auto.mouseXAbs;
+                    ev.pageY = uObj.auto.mouseYAbs;
+                    uObj.auto.sortable._mouseDrag(ev);
+                    uObj.auto.sortable = $.data(uObj.auto.btn.parent()[0], 'ui-sortable');
+                }
+            }
             return ev;
         };
         /* ******************************************************************************** */
@@ -444,7 +461,8 @@
             /* ******************************************************************************** */
             context: {
                 uObj: this.uObj,
-                doMouseDown: this.doMouseDown
+                doMouseDown: this.doMouseDown,
+                doMouseMove: this.doMouseMove
             },
             init: function (options) {
                 var settings = $.extend({
@@ -484,149 +502,167 @@
                 uObj.indexObj.init();
                 //dummy = null;
                 //
-                //uObj.auto = {};
-                //uObj.auto.isAutoOn = false;
-                //uObj.auto.mouseX = 0;
-                //uObj.auto.mouseY = 0;
+                uObj.auto = {};
+                uObj.auto.isAutoOn = false;
+                uObj.auto.mouseX = 0;
+                uObj.auto.mouseY = 0;
+                uObj.auto.btn = {};
+                uObj.auto.placeholder = {};
                 vw$SetGlobal('isBusy', false);
                 //
+                uObj.ulListSortable = {};
+                uObj.sortableObj = {};
                 myMakeUlDnd();
                 //
                 return mySelf;
+            },
+            auto: function () {
+                uObj.auto.isAutoOn = true;
+                //
+                var autoFactory = function () {
+                    //         var myRtn = null;
+                    var autoObj = function () {
+                        this.intervalTimer = null;
+                        this.stepList = [];
+                        this.stepListAbs = [];
+                        this.allLiList = [];
+                        this.checkLiList = [];
+                        this.checkListLength = {};
+                        this.pos = {};
+                        this.destPos = {};
+                        this.destLiIdx = {};
+                        $('#divContainerCover').css('pointer-events', 'none');
+                        $('#divContainerCover').show();
+                        this.calcSteps = function () {
+                            this.stepList = [];
+                            var x1 = parseInt(this.pos.left);
+                            var x2 = parseInt(this.destPos.left + 1);
+                            var y1 = parseInt(this.pos.top);
+                            var y2 = parseInt(this.destPos.top + 1);
+                            var newX, newY, steps;
+                            //* *********************************************
+                            //* y=mx+b; thus y=(x/(1/m))+b
+                            //* *** 
+                            //* Similarly, if m=(y2-y1)/(x2-x) then..
+                            //* let dxdy = (1/m), then  dxdy=(x2-x1)/(y2-y1);
+                            //* ***
+                            //* then we have y=(x/dxdy)+b, and b=y-(x/dxdy);
+                            //* ... and simmilarly x=(y-b)*dxdy;
+                            //* *********************************************
+                            var dx = (x2 - x1);
+                            var dy = (y2 - y1);
+                            var m = dy / dx;
+                            var b1 = y1 - m * x1;
+                            var b2 = y2 - m * x2;
+                            var b = parseInt((b1 + b2) / 2);
+                            //
+                            var isMoveByX = Math.abs(dx) > Math.abs(dy);
+                            //
+                            newX = x1;
+                            newY = y1;
+                            if (isMoveByX) {
+                                steps = parseInt(Math.abs(x2 - x1) / 50);
+                                for (let i = 0; i < steps; i++) {
+                                    newX = newX + 50;
+                                    newY = parseInt((m * newX) + b);
+                                    this.stepList.push(new vw$CoordDef(newX - x1, newY - y1));
+                                    this.stepListAbs.push(new vw$CoordDef(newX, newY));
+                                }
+                            } else {
+                                steps = parseInt(Math.abs(y2 - y1) / 50);
+                                for (let i = 0; i < steps; i++) {
+                                    newY = newY + 50;
+                                    newX = parseInt((newY - b) / m);
+                                    this.stepList.push(new vw$CoordDef(newX-x1, newY-y1));
+                                    this.stepListAbs.push(new vw$CoordDef(newX, newY));
+                                }
+                            }
+                            if ((newX != x2) || (newY != y2)) {
+                                this.stepList.push(new vw$CoordDef(x2 - x1, y2 - y1));
+                                this.stepListAbs.push(new vw$CoordDef(x2, y2));
+                            }
+                            uObj.auto.stepList = this.stepList;
+                            uObj.auto.stepListAbs = this.stepListAbs;
+                        };
+                    };
+                    autoObj.prototype.init = function () {
+                        //uObj.auto.callBackContext = this;     
+                        this.autoCallBack();
+                    };
+                    autoObj.prototype.autoCallBack = function () {
+                        if (this.intervalTimer != null) {
+                            clearInterval(this.intervalTimer);
+                        }
+                        this.stepList = [];
+                        this.allLiList = $().getAllCtrLiList();
+                        this.checkLiList = this.allLiList.not($().getDoneLiList());
+                        this.checkListLength = this.checkLiList.length;
+                        var currLi, destLi;
+                        if (this.checkListLength > 0) {
+                            currLi = this.checkLiList.eq(0);
+                            uObj.auto.btn = currLi;
+                            uObj.auto.sortable = $.data(uObj.auto.btn.parent()[0], 'ui-sortable')
+                            this.pos = uObj.auto.btn.offset();
+                            uObj.auto.mouseX = this.pos.left;
+                            uObj.auto.mouseY = this.pos.top;
+                            this.destLiIdx = parseInt(currLi.attr('allIndex'));
+                            destLi = this.allLiList.eq(this.destLiIdx);
+                            this.destPos = destLi.offset();
+                            this.calcSteps();
+                            uObj.auto.btn.simulate('mousedown');
+                            uObj.auto.btn.closest('body');
+                            uObj.auto.placeholder = uObj.auto.btn.parent().find('li.ui-sortable-placeholder');
+                            uObj.auto.placeholder.closest('body');
+                            vw$SetGlobal('autoContext', this);
+                            this.intervalTimer = setInterval(this.autoStep, 150);
+                        } else {
+                            $('#divContainerCover').css('pointer-events', 'auto');
+                            $('#divContainerCover').hide();
+                        }
+                    };
+                    autoObj.prototype.autoStep = function () {
+                        if (vw$GetGlobal('isBusy')) {
+                            return;
+                        }
+                        uObj.auto.helper = $().getAllLiList().filter('li.ui-sortable-helper');
+                        uObj.auto.helper.bind('mousemove', vw$GetGlobal('gContext').doMouseMove);
+                        var myContext = vw$GetGlobal('autoContext');
+                        var listLength = uObj.auto.stepList.length;
+                        var newCoord = new vw$CoordDef(uObj.auto.mouseX, uObj.auto.mouseY);
+                        if (listLength > 0) {
+                            newCoord = uObj.auto.stepList.shift();
+                            uObj.auto.mouseX = newCoord.x;
+                            uObj.auto.mouseY = newCoord.y;
+                            newCoord = uObj.auto.stepListAbs.shift();
+                            uObj.auto.mouseXAbs = newCoord.x;
+                            uObj.auto.mouseYAbs = newCoord.y;
+                            uObj.auto.helper.simulate('mousemove', { clientX: uObj.auto.mouseX, clientY: uObj.auto.mouseY });
+                        } else {
+                            var allLiList = $().getAllCtrLiList();
+                            var destLi = allLiList.filter('.ui-sortable-placeholder');
+                            var destLiIdx = allLiList.index(destLi);
+                            if (destLiIdx < myContext.destLiIdx) {
+                                newCoord.x = uObj.auto.mouseX;
+                                newCoord.y = uObj.auto.mouseY - 5;
+                                uObj.auto.stepList.push(newCoord);
+                            } else if (destLiIdx > myContext.destLiIdx) {
+                                newCoord.x = uObj.auto.mouseX;
+                                newCoord.y = uObj.auto.mouseY + 5;
+                                uObj.auto.stepList.push(newCoord);
+                            } else {
+                                uObj.auto.helper.parent().simulate('mouseup');
+                                clearInterval(myContext.intervalTimer);
+                                setTimeout(function () { myContext.autoCallBack(); }, 1000);
+                            }
+                        }
+                    };
+                    //
+                    myRtn = new autoObj();
+                    return myRtn;
+                };
+                uObj.auto.obj = autoFactory();
+                uObj.auto.obj.init();
             }
-            //},
-            //auto: function () {
-            //    uObj.auto.isAutoOn = true;
-            //    //
-            //    var autoFactory = function () {
-            //        var myRtn = null;
-            //        var autoObj = function () {
-            //            this.intervalTimer = null;
-            //            this.stepList = [];
-            //            this.allLiList = [];
-            //            this.checkLiList = [];
-            //            this.checkListLength = {};
-            //            this.btn = {};
-            //            this.pos = {};
-            //            this.destPos = {};
-            //            this.destLiIdx = {};
-            //            $('#divContainerCover').css('pointer-events', 'none');
-            //            $('#divContainerCover').show();
-            //            this.calcSteps = function () {
-            //                this.stepList = [];
-            //                var x1 = this.pos.left;
-            //                var x2 = this.destPos.left + 5;
-            //                var y1 = this.pos.top;
-            //                var y2 = this.destPos.top + 5;
-            //                //this.stepList.push(new vw$CoordDef(x2, y2));
-            //                var newX, neonDoneClassLiwY, steps;
-            //                //* *********************************************
-            //                //* y=mx+b; thus y=(x/(1/m))+b
-            //                //* *** 
-            //                //* Similarly, if m=(y2-y1)/(x2-x) then..
-            //                //* let dxdy = (1/m), then  dxdy=(x2-x1)/(y2-y1);
-            //                //* ***
-            //                //* then we have y=(x/dxdy)+b, and b=y-(x/dxdy);
-            //                //* ... and simmilarly x=(y-b)*dxdy;
-            //                //* *********************************************
-            //                var dxdy = (x2 - x1) / (y2 - y1);
-            //                var b = y1 - (x1 / dxdy);
-            //                //*
-            //                var isMoveByX = Math.abs(x2 - x1) > Math.abs(y2 - y1);
-            //                //*
-            //                newX = x1;
-            //                newY = y1;
-            //                if (isMoveByX) {
-            //                    steps = parseInt(Math.abs(x2 - x1) / 50);
-            //                    for (let i = 0; i < steps; i++) {
-            //                        newX = newX + 50;
-            //                        newY = parseInt((newX / dxdy) + b) + 5;
-            //                        this.stepList.push(new vw$CoordDef(newX, newY));
-            //                    }
-            //                } else {
-            //                    steps = parseInt(Math.abs(y2 - y1) / 50);
-            //                    for (let i = 0; i < steps; i++) {
-            //                        newY = newY + 50;
-            //                        newX = parseInt((newY - b) * dxdy) + 3;
-            //                        this.stepList.push(new vw$CoordDef(newX, newY));
-            //                    }
-            //                }
-            //                if ((newX != x2) || (newY != y2)) {
-            //                    this.stepList.push(new vw$CoordDef(x2, y2));
-            //                }
-            //                uObj.auto.stepList = this.stepList;
-            //            };
-            //        };
-            //        autoObj.prototype.init = function () {
-            //            //uObj.auto.callBackContext = this;     
-            //            this.autoCallBack();
-            //        };
-            //        autoObj.prototype.autoCallBack = function () {
-            //            if (this.intervalTimer != null) {
-            //                clearInterval(this.intervalTimer);
-            //            }
-            //            this.stepList = [];
-            //            this.allLiList = uDndUlList.init.find('li');
-            //            this.checkLiList = uDndUlList.curr.find('li:not(.' + uObj.onDoneClassLi + ')');
-            //            this.checkListLength = this.checkLiList.length;
-            //            var currLi, destLi;
-            //            if (this.checkListLength > 0) {
-            //                currLi = this.checkLiList.eq(0);
-            //                this.btn = currLi.find('[dndbtn]').first();
-            //                this.pos = this.btn.offset();
-            //                uObj.auto.mouseX = this.pos.left + 7;
-            //                uObj.auto.mouseY = this.pos.top + 9;
-            //                this.destLiIdx = parseInt(currLi.attr('allIndex'));
-            //                destLi = this.allLiList.eq(this.destLiIdx);
-            //                this.destPos = destLi.offset();
-            //                this.calcSteps();
-            //                this.btn.trigger('mousedown');
-            //                vw$SetGlobal('autoContext', this);
-            //                this.intervalTimer = setInterval(this.autoStep, 150);
-            //            } else {
-            //                $('#divContainerCover').css('pointer-events', 'auto');
-            //                $('#divContainerCover').hide();
-            //            }
-            //        };
-            //        autoObj.prototype.autoStep = function () {
-            //            if (vw$GetGlobal('isBusy')) {
-            //                return;
-            //            }
-            //            var myContext = vw$GetGlobal('autoContext');
-            //            var listLength = uObj.auto.stepList.length;
-            //            var newCoord = new vw$CoordDef(uObj.auto.mouseX, uObj.auto.mouseY);
-            //            if (listLength > 0) {
-            //                newCoord = uObj.auto.stepList.shift();
-            //                uObj.auto.mouseX = newCoord.x;
-            //                uObj.auto.mouseY = newCoord.y;
-            //                $('body').trigger('mousemove');
-            //            } else {
-            //                var allLiList = $().getAllLiList();
-            //                var destLi = allLiList.filter('.' + vw$GetGlobal('occupyClass'));
-            //                var destLiIdx = allLiList.index(destLi);
-            //                if (destLiIdx < myContext.destLiIdx) {
-            //                    newCoord.x = uObj.auto.mouseX;
-            //                    newCoord.y = uObj.auto.mouseY + 5;
-            //                    uObj.auto.stepList.push(newCoord);
-            //                } else if (destLiIdx > myContext.destLiIdx) {
-            //                    newCoord.x = uObj.auto.mouseX;
-            //                    newCoord.y = uObj.auto.mouseY - 10;
-            //                    uObj.auto.stepList.push(newCoord);
-            //                } else {
-            //                    $('body').trigger('mouseup');
-            //                    clearInterval(myContext.intervalTimer);
-            //                    setTimeout(function () { myContext.autoCallBack(); }, 1000);
-            //                }
-            //            }
-            //        };
-            //        //
-            //        myRtn = new autoObj();
-            //        return myRtn;
-            //    }
-            //    //
-            //    this.myAutoObj = autoFactory();
-            //    this.myAutoObj.init();
-            //}
         };
         return myResult;
     };
