@@ -64,23 +64,33 @@
                     </span>
                 </div>
                 <div class="navbar-collapse collapse myNavbarCollapse width">
-                    <ul class="myNav nav navbar-nav myNavTop" style="height:35px;">
-                        <li class="myNavTop">
-                            <a href=@Url.Action("Index", "Home") class="myNavTop_link">
-                                <span>Home</span>
-                            </a>
-                        </li>
-                        <li class="myNavTop">
-                            <a href=@Url.Action("About", "Home") class="myNavTop_link">
-                                <span>About</span>
-                            </a>
-                        </li>
-                        <li class="myNavTop">
-                            <a href=@Url.Action("Contact", "Home") class="myNavTop_link">
-                                <span>Contact</span>
-                            </a>
-                        </li>
-                    </ul>
+                  <ul class="myNav nav navbar-nav myNavTop" style="height:35px;">
+                    <li class="myNavTop">
+                      <a href=@Url.Action("Index", "Home") class="myNavTop_link">
+                        <span>Home</span>
+                      </a>
+                    </li>
+                    <li class="myNavTop dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Demos
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">DnD Demo I</a>
+                        <a class="dropdown-item" href="#">DnD Demo II</a>
+                        <a class="dropdown-item" href="#">DnD Demo III</a>
+                      </div>
+                    </li>
+                    <li class="myNavTop">
+                      <a href=@Url.Action("About", "Home") class="myNavTop_link">
+                        <span>About</span>
+                      </a>
+                    </li>
+                    <li class="myNavTop">
+                      <a href=@Url.Action("Contact", "Home") class="myNavTop_link">
+                        <span>Contact</span>
+                      </a>
+                    </li>
+                  </ul>
                     <!-- -->
                 </div>
             </div>
