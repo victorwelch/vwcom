@@ -201,8 +201,8 @@ div.rowScore {
 }
 
 tr.myDragTr, div.myDragTr {
-  background-color: khaki;
-  opacity: 0.70;
+  background-color: cornflowerblue;
+  opacity: 0.90;
   border-top: solid 1px transparent;
 }
 
@@ -212,8 +212,8 @@ tr.myFlashTr {
 }
 
 tr.myDoneTr {
-  background-color: white;
-  opacity: 0.25;
+  background-color: #fff;
+  opacity: 0.60;
 }
 
 tr.myOccupy {
@@ -283,6 +283,19 @@ div.stateDiv {
   float: left;
   display: inline-block;
   position: relative;
+  width:100%;
+}
+div.stateDiv:hover {
+  cursor: pointer;
+}
+div.stateDivNoHover {
+  padding-top: 2px;
+  float: left;
+  /*
+  display: inline-block;
+  position: relative;
+  */
+  width: 100%;
 }
 
 div.iconDiv {

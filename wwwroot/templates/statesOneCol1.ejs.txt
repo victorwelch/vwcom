@@ -13,8 +13,7 @@
             <table class="tg states" tbllength="17" firstIdx="0" lastIdx="16"><%for (var i=0;i<17;i++) { %>
                 <tr sortNum="<%=randomList[i].sSortNum;%>" allIndex="<%=randomList[i].sSortNum-1;%>">
                     <td class="tg-zax" sortNum="<%=randomList[i].sState;%>">
-                        <div class=iconDiv dndbtn="1"></div>
-                        <div class="stateDiv"><%=randomList[i].state;%></div>
+                        <div class="stateDiv" dndbtn="1"><%=randomList[i].state;%></div>
                     </td>
                 </tr><% } %>
             </table>

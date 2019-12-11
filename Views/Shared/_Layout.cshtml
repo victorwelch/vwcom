@@ -70,15 +70,18 @@
                         <span>Home</span>
                       </a>
                     </li>
-                    <li class="myNavTop dropdown">
-                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Demos
-                      </a>
-                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">DnD Demo I</a>
-                        <a class="dropdown-item" href="#">DnD Demo II</a>
-                        <a class="dropdown-item" href="#">DnD Demo III</a>
+                    <li class="myNavTop">
+                      <div class="myNavTop_link">
+                        <span>Demos</span>
                       </div>
+                      <div class="myNavTop_dropDown">
+                        <ul>
+                          <li><a href=@Url.Action("StatesOne", "Demo")><span>DnD Demo I</span></a></li>
+                          <li><a href=@Url.Action("StatesTwo", "Demo")><span>DnD Demo II</span></a></li>
+                          <li><a href=@Url.Action("StatesTwo", "Demo")><span>Radio Dial Demo</span></a></li>
+                        </ul>
+                      </div>
+
                     </li>
                     <li class="myNavTop">
                       <a href=@Url.Action("About", "Home") class="myNavTop_link">
