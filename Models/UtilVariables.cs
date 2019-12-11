@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -10,6 +10,6 @@ namespace vwcom.Models
     public class UtilVariables
     {
         public static IConfiguration Configuration { get; set;  }
-        public static IHostingEnvironment HostingEnvironment { get; set; }
+        public static IWebHostEnvironment HostingEnvironment { get; set; }
     }
 }

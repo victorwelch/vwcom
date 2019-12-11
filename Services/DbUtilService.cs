@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,7 +23,7 @@ namespace vwcom.Services
         public string getStatesRnd()
         {               
             string myRtn = String.Empty;
-            var myRtnObj = _context.UspValue.FromSql("EXECUTE uiDemo.usp$GetStatesRandom");
+            var myRtnObj = _context.UspValue.FromSqlRaw("EXECUTE uiDemo.usp$GetStatesRandom");
             myRtn = myRtnObj.ToList().First().ValueStr;
             return myRtn;
         }

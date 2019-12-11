@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Http;
 using System.IO;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Formatting;
 using vwcom.Models.DB;
 using vwcom.Services;
 using Newtonsoft.Json;
@@ -21,8 +20,8 @@ namespace vwcom.Controllers
     [Route("api/[controller]")]
     public class utilInfoController : WebApiController
     {
-        private vwcomContext _dbContext;
-        private IHttpContextAccessor _httpContextAccessor;
+        private  readonly vwcomContext _dbContext;
+        private readonly IHttpContextAccessor _httpContextAccessor;
         public utilInfoController(vwcomContext dbContext, IHttpContextAccessor httpContextAccessor)
         {
             this._dbContext = dbContext;

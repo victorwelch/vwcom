@@ -15,8 +15,8 @@ namespace vwcom.Models
 {
     public class FileUtilHelper
     {
-        private IHostingEnvironment _hostenv;
-        public FileUtilHelper(IHostingEnvironment hostenv)
+        private IWebHostEnvironment _hostenv;
+        public FileUtilHelper(IWebHostEnvironment hostenv)
         {
             this._hostenv = hostenv;
         }
