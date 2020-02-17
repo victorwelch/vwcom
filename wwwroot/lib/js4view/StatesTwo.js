@@ -16,7 +16,6 @@ $(window).on('load', function () {
   $('#wrap').show();
   //******************************
   //*** Init Functions         ***
-  $('#divBrdrContainer').find('*').show();
   $('#divInstrContainer').children().show();
   $('#divInstrInner').children().show();
   $().myCommonPlugin().colInit({

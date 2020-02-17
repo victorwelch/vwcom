@@ -1,0 +1,730 @@
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+/* Settings Inherited from StatesDemo                                                             */
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+.d-none {
+  display: none;
+}
+
+.myRow0Class {
+  clear: both;
+  position: relative;
+  top: 0;
+}
+
+.col0Wrap {
+  clear: both;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+.instrContainer {
+  background: none;
+}
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+/* Settings for RadioKnobs                                                                        */
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+@font-face {
+  font-family: 'ds-digitalnormal';
+  src: url('../fonts/dsdigi-webfont.woff2') format('woff2'), url('../fonts/dsdigi-webfont.woff') format('woff'), url('../fonts/dsdigi.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ds-digitalbold';
+  src: url('../fonts/dsdigib-webfont.woff2') format('woff2'), url('../fonts/dsdigib-webfont.woff') format('woff'), url('../fonts/dsdigib.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ds-digitalitalic';
+  src: url('../fonts/dsdigii-webfont.woff2') format('woff2'), url('../fonts/dsdigii-webfont.woff') format('woff'), url('../fonts/dsdigii.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ds-digitalbold_italic';
+  src: url('../fonts/dsdigiit-webfont.woff2') format('woff2'), url('../fonts/dsdigiit-webfont.woff') format('woff'), url('../fonts/dsdigiit.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* *********************************************************************************************  */
+/* Common Settings -- same for screen sizes                                                       */
+/* *********************************************************************************************  */
+
+#radioDisplay {
+  position: relative;
+  margin-top: 10px;
+  left: 50%;
+  background: url('../images/radioknobs/radioDisplay02s.png') center no-repeat;
+  background-size: contain;
+}
+
+#pwrOnLight {
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  background: url('../images/radioknobs/pwrOnLight.png') center no-repeat;
+  background-size: contain;
+  display: none;
+}
+
+#containerVol {
+  position: absolute;
+}
+
+#wheelVol {
+  position: relative;
+  z-index: 100;
+  background: url('../images/radioknobs/1x1.png') center no-repeat;
+}
+
+#wheelVol_knob {
+  background: url('../images/radioknobs/knob_inner03.png');
+  background-size: contain;
+}
+
+#wheelTune_knob {
+  background: url('../images/radioknobs/knob_inner03.png');
+  background-size: contain;
+}
+
+#containerTune {
+  position: absolute;
+}
+
+#wheelTune {
+  position: relative;
+  z-index: 100;
+  background: url('../images/radioknobs/1x1.png') center no-repeat;
+}
+
+#stationDisplay {
+  display: none;
+  position: absolute;
+  text-align: left;
+}
+
+#stationDisplay span {
+  font-family: 'ds-digitalnormal';
+  color: #66bde4;
+  text-shadow: 0 0 10px #66bde4;
+}
+
+div.vol {
+  display: none;
+  position: absolute;
+  background: #66bde4;
+  overflow: hidden;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px 2px #66bde4;
+}
+
+#volLabel {
+  position: absolute;
+  height: 20px;
+  width: 80px;
+  background: url('../images/radioknobs/volLabel07.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#tuneLabel {
+  position: absolute;
+  height: 20px;
+  width: 80px;
+  background: url('../images/radioknobs/tuneLabel07.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+#bandSelect {
+  position: absolute;
+  height: 22px;
+  width: 61px;
+}
+
+.bandBtn {
+  background: url('../images/radioknobs/bandBtn01.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 28px;
+  text-align: center;
+  font-family: 'ds-digitalnormal';
+  font-size: 15px;
+  color: #ccc;
+}
+
+.bandBtnHoverOn {
+  cursor: pointer;
+  background: url('../images/radioknobs/bandBtn.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 28px;
+  text-align: center;
+  font-family: 'ds-digitalnormal';
+  font-size: 15px;
+  color: #ccc;
+}
+
+.bandBtnStateOn {
+  background: url('../images/radioknobs/bandBtn01.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 20px;
+  width: 28px;
+  text-align: center;
+  font-family: 'ds-digitalnormal';
+  font-size: 15px;
+  font-weight: bold;
+  color: #66bde4;
+  text-shadow: 0 0 4px #66bde4;
+}
+
+#fmBandBtn {
+  float: left;
+}
+
+#amBandBtn {
+  float: right;
+}
+
+#bandSelect div span {
+  display: block;
+  margin-top: 2px;
+}
+
+/* *********************************************************************************************  */
+/* Settings Adjustments -- specific for each screen size                                          */
+/* *********************************************************************************************  */
+
+  /* *** Less Than 576     *** */
+  @media (max-width: 575.5px) {
+    .isMaxWidth575 {
+      display: inline-block;
+      float: right;
+    }
+    .isMinWidth576 {
+      display: inline-block;
+      float: left;
+    }
+    .isMinWidth768 {
+      display: inline-block;
+      float: left;
+    }
+    .isMinWidth992 {
+      display: inline-block;
+      float: left;
+    }
+    #radioDisplay {
+      width: 332px;
+      height: 145px;
+      margin-left: -166px;
+      background: url('../images/radioknobs/radioDisplay03s.png') center no-repeat;
+      background-size: contain;
+    }
+    #pwrOnLight {
+      top: 14px;
+      left: 44px;
+      height: 16px;
+      width: 16px;
+    }
+    #containerVol {
+      top: 33px;
+      left: 22px;
+    }
+    #wheelVol {
+      width: 60px;
+      height: 60px;
+    }
+    #containerTune {
+      top: 33px;
+      left: 252px;
+    }
+    #wheelTune {
+      width: 60px;
+      height: 60px;
+    }
+    #stationDisplay {
+      top: 26px;
+      left: 135px;
+      width: 100px;
+    }
+    #stationDisplay span {
+      font-size: 50px;
+    }
+    div.vol {
+      left: 106px;
+    }
+    #vol8 {
+      top: 46px;
+      width: 24px;
+      height: 3px;
+    }
+    #vol7 {
+      top: 50px;
+      width: 18px;
+      height: 3px;
+    }
+    #vol6 {
+      top: 54px;
+      width: 13px;
+      height: 3px;
+    }
+    #vol5 {
+      top: 58px;
+      width: 10px;
+      height: 3px;
+    }
+    #vol4 {
+      top: 62px;
+      width: 8px;
+      height: 3px;
+    }
+    #vol3 {
+      top: 66px;
+      width: 6px;
+      height: 3px;
+    }
+    #vol2 {
+      top: 70px;
+      width: 4px;
+      height: 3px;
+    }
+    #vol1 {
+      top: 74px;
+      width: 3px;
+      height: 3px;
+    }
+    #volLabel {
+      top: 73px;
+      left: -10px;
+    }
+    #tuneLabel {
+      top: 73px;
+      left: -11px;
+    }
+    #bandSelect {
+      top: 85px;
+      left: 142px;
+    }
+  }
+  /* *** Ebd Less Than 576 *** */
+  /*****************************/
+  /*****************************/
+  /* *** 576 and up        *** */
+  @media (min-width: 576px) {
+    .isMaxWidth575 {
+      display: inline-block;
+      float: left;
+    }
+
+    .isMinWidth576 {
+      display: inline-block;
+      float: right;
+    }
+
+    .isMinWidth768 {
+      display: inline-block;
+      float: left;
+    }
+
+    .isMinWidth992 {
+      display: inline-block;
+      float: left;
+    }
+
+    #radioDisplay {
+      width: 480px;
+      height: 175px;
+      margin-left: -240px;
+    }
+
+    #pwrOnLight {
+      top: 9px;
+      left: 62px;
+      height: 20px;
+      width: 20px;
+    }
+
+    #containerVol {
+      top: 35px;
+      left: 24px;
+    }
+
+    #wheelVol {
+      width: 95px;
+      height: 95px;
+    }
+
+    #containerTune {
+      top: 35px;
+      left: 361px;
+    }
+
+    #wheelTune {
+      width: 95px;
+      height: 95px;
+    }
+
+    #stationDisplay {
+      top: 21px;
+      left: 197px;
+      width: 135px;
+    }
+
+    #stationDisplay span {
+      font-size: 70px;
+    }
+
+    div.vol {
+      left: 150px;
+    }
+
+    #vol8 {
+      top: 47px;
+      width: 43px;
+      height: 5px;
+    }
+
+    #vol7 {
+      top: 53px;
+      width: 32px;
+      height: 5px;
+    }
+
+    #vol6 {
+      top: 59px;
+      width: 24px;
+      height: 5px;
+    }
+
+    #vol5 {
+      top: 65px;
+      width: 18px;
+      height: 5px;
+    }
+
+    #vol4 {
+      top: 71px;
+      width: 14px;
+      height: 5px;
+    }
+
+    #vol3 {
+      top: 77px;
+      width: 11px;
+      height: 5px;
+    }
+
+    #vol2 {
+      top: 83px;
+      width: 9px;
+      height: 5px;
+    }
+
+    #vol1 {
+      top: 89px;
+      width: 6px;
+      height: 5px;
+    }
+
+    #volLabel {
+      top: 104px;
+      left: 8px;
+    }
+
+    #tuneLabel {
+      top: 104px;
+      left: 8px;
+    }
+
+    #bandSelect {
+      top: 105px;
+      left: 212px;
+    }
+  }
+  /* *** End 576 and up    *** */
+  /*****************************/
+  /*****************************/
+  /* *** 768 and up        *** */
+  @media (min-width: 768px) {
+    .isMaxWidth575 {
+      display: inline-block;
+      float: left;
+    }
+
+    .isMinWidth576 {
+      display: inline-block;
+      float: left;
+    }
+
+    .isMinWidth768 {
+      display: inline-block;
+      float: right;
+    }
+
+    .isMinWidth992 {
+      display: inline-block;
+      float: left;
+    }
+
+    #radioDisplay {
+      width: 640px;
+      height: 234px;
+      margin-left: -320px;
+    }
+
+    #pwrOnLight {
+      top: 18px;
+      left: 84px;
+    }
+
+    #containerVol {
+      top: 49px;
+      left: 35px;
+    }
+
+    #wheelVol {
+      width: 120px;
+      height: 120px;
+    }
+
+    #containerTune {
+      top: 48px;
+      left: 485px;
+    }
+
+    #wheelTune {
+      width: 120px;
+      height: 120px;
+    }
+    
+    #stationDisplay {
+      top: 30px;
+      left: 270px;
+      width: 172px;
+    }
+
+    #stationDisplay span {
+      font-size: 90px;
+    }
+
+    div.vol {
+      left: 202px;
+    }
+
+    #vol8 {
+      top: 60px;
+      width: 60px;
+      height: 8px;
+    }
+
+    #vol7 {
+      top: 69px;
+      width: 45px;
+      height: 8px;
+    }
+
+    #vol6 {
+      top: 78px;
+      width: 35px;
+      height: 8px;
+    }
+
+    #vol5 {
+      top: 87px;
+      width: 27px;
+      height: 8px;
+    }
+
+    #vol4 {
+      top: 96px;
+      width: 21px;
+      height: 8px;
+    }
+
+    #vol3 {
+      top: 105px;
+      width: 17px;
+      height: 8px;
+    }
+
+    #vol2 {
+      top: 114px;
+      width: 13px;
+      height: 8px;
+    }
+
+    #vol1 {
+      top: 122px;
+      width: 10px;
+      height: 8px;
+    }
+
+    #volLabel {
+      top: 138px;
+      left: 18px;
+    }
+
+    #tuneLabel {
+      top: 138px;
+      left: 18px;
+    }
+
+    #bandSelect {
+      top: 135px;
+      left: 290px;
+    }
+
+  }
+  /* *** End 768 and up    *** */
+  /*****************************/
+  /*****************************/
+  /* *** 992 and up        *** */
+  @media (min-width: 992px) {
+    .isMaxWidth575 {
+      display: inline-block;
+      float: left;
+    }
+
+    .isMinWidth576 {
+      display: inline-block;
+      float: left;
+    }
+
+    .isMinWidth768 {
+      display: inline-block;
+      float: left;
+    }
+
+    .isMinWidth992 {
+      display: inline-block;
+      float: right;
+    }
+
+    #radioDisplay {
+      width: 740px;
+      height: 270px;
+      margin-left: -370px;
+    }
+
+    #pwrOnLight {
+      top: 25px;
+      left: 100px;
+    }
+
+    #containerVol {
+      position: absolute;
+      top: 56px;
+      left: 39px;
+    }
+
+    #wheelVol {
+      width: 142px;
+      height: 142px;
+    }
+
+    #containerTune {
+      top: 56px;
+      left: 560px;
+    }
+
+    #wheelTune {
+      width: 142px;
+      height: 142px;
+    }
+
+    #stationDisplay {
+      top: 39px;
+      left: 322px;
+      text-align: left;
+    }
+
+    #stationDisplay span {
+      font-size: 100px;
+    }
+
+    div.vol {
+      left: 230px;
+    }
+
+    #vol8 {
+      top: 70px;
+      width: 60px;
+      height: 8px;
+    }
+
+    #vol7 {
+      top: 80px;
+      width: 45px;
+      height: 8px;
+    }
+
+    #vol6 {
+      top: 90px;
+      width: 35px;
+      height: 8px;
+    }
+
+    #vol5 {
+      top: 100px;
+      width: 27px;
+      height: 8px;
+    }
+
+    #vol4 {
+      top: 110px;
+      width: 21px;
+      height: 8px;
+    }
+
+    #vol3 {
+      top: 120px;
+      width: 17px;
+      height: 8px;
+    }
+
+    #vol2 {
+      top: 130px;
+      width: 13px;
+      height: 8px;
+    }
+
+    #vol1 {
+      top: 140px;
+      width: 10px;
+      height: 8px;
+    }
+
+    #volLabel {
+      top: 160px;
+      left: 34px;
+    }
+
+    #tuneLabel {
+      top: 160px;
+      left: 34px;
+    }
+
+    #bandSelect {
+      top: 160px;
+      left: 343px;
+    }
+  }
+  /* *** end min width 992*/
+

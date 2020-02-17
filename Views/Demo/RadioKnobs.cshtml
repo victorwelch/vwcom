@@ -1,0 +1,80 @@
+@{
+  ViewData["Title"] = "RadioKnobs";
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section css {
+  <link href="@Url.Content("~/css/myStatesDemo.css")" rel="stylesheet" />
+  <link href="@Url.Content("~/css/myRadioKnobs.css")" rel="stylesheet" />
+}
+@section Scripts {
+  <script src="~/js/ejs.js"></script>
+  <script src="~/lib/myjquery/vw$util.js"></script>
+  <script src="~/lib/myjquery/jogDial.js"></script>
+  <script src="~/lib/js4view/RadioKnobs.js"></script>
+}
+<div id="jumbo2" style="display:block;" class="jumbotron">
+  <div id="divTlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
+  <div id="divBlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
+  <div id="divLlineJumboCollapsed00" class="myJumboCollapsedLeftRightLine" style="display:block;"></div>
+  <div id="divRlineJumboCollapsed00" class="myJumboCollapsedLeftRightLine" style="display:block;"></div>
+  <div id="divUlCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myUlCrnrImage" style="display:block;"></div>
+  <div id="divUrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myUrCrnrImage" style="display:block;"></div>
+  <div id="divLlCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLlCrnrImage" style="display:block;"></div>
+  <div id="divLrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLrCrnrImage" style="display:block;"></div>
+  <div id="divVwBanner00" style="display:block;"></div>
+  <div id="divCollapsedHeaderLine00" style="display:block;"></div>
+  <div id="divCollapsedHeaderLeft00" class="collapsedHdrLeftRight" style="display:block;"></div>
+  <div id="divCollapsedHeaderRight00" class="collapsedHdrLeftRight" style="display:block;"></div>
+</div>
+<div id="myRow0" class="row myRow myRow0Class">
+  <div id="col0" class="col-md-12">
+    <div id="divTlineBrdrContainer01" class="myBrdrContainerTopBotLine"></div>
+    <div id="divBlineBrdrContainer01" class="myBrdrContainerTopBotLine"></div>
+    <div id="divLlineBrdrContainer01" class="myBrdrContainerLeftRightLine"></div>
+    <div id="divRlineBrdrContainer01" class="myBrdrContainerLeftRightLine"></div>
+    <div id="divUlCrnrBrdrContainer01" class="myBrdrContainerCrnr myUlCrnrImage"></div>
+    <div id="divUrCrnrBrdrContainer01" class="myBrdrContainerCrnr myUrCrnrImage"></div>
+    <div id="divLlCrnrBrdrContainer01" class="myBrdrContainerCrnr myLlCrnrImage"></div>
+    <div id="divLrCrnrBrdrContainer01" class="myBrdrContainerCrnr myLrCrnrImage"></div>
+    <div id="divCol0Wrap" class="col0Wrap">
+      <div id="divInstrContainer" class="instrContainer">
+        <div id="divInstrInner" class="instrInner">
+          <section id="secRadioContainer">
+            <div id="radioDisplay">
+              <div id="pwrOnLight"></div>
+              <div id="vol8" class="vol"><span></span></div>
+              <div id="vol7" class="vol"><span></span></div>
+              <div id="vol6" class="vol"><span></span></div>
+              <div id="vol5" class="vol"><span></span></div>
+              <div id="vol4" class="vol"><span></span></div>
+              <div id="vol3" class="vol"><span></span></div>
+              <div id="vol2" class="vol"><span></span></div>
+              <div id="vol1" class="vol"><span></span></div>
+              <div id="stationDisplay"><span></span></div>
+              <div id="containerVol" class="dial" pwr="off">
+                <div id="wheelVol"></div>
+                <div id="volLabel"></div>
+              </div>
+              <div id="containerTune" class="dial">
+                <div id="wheelTune"></div>
+                <div id="tuneLabel"></div>
+              </div>
+              <div id='bandSelect'>
+                <div id='fmBandBtn' class="bandBtn" bandBtnState="off"><span>FM</span></div>
+                <div id='amBandBtn' class="bandBtn" bandBtnState="off"><span>AM</span></div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div id="spacerdiv0" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;text-align:center;">
+          <img id="spacerimg0" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="isMaxWidth575"></div>
+  <div class="isMinWidth576"></div>
+  <div class="isMinWidth768"></div>
+  <div class="isMinWidth992"></div>
+</div>
+
