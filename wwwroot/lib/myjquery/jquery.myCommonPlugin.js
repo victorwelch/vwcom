@@ -1,4 +1,4 @@
-﻿; $.myCommonGlobal = {};
+; $.myCommonGlobal = {};
 
 ; (function ($, window, document, undefined) {
     $.fn.myCommonPlugin = function () {

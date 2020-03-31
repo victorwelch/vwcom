@@ -231,7 +231,7 @@
     /*
     /*** Assign mousedown event to DnD buttons ***/
     var myMakeTblDnd = function () {
-      debugger;
+      //debugger;
       var allBtnList = $().getAllRowList().find('[dndbtn]');
       allBtnList.bind('mousedown', myMouseDown);
     };

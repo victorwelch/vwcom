@@ -52,13 +52,9 @@
   margin-bottom: 30px;
 }
 
-.welcomePanel {
-  font-size: 18px;
-  font-weight: bold;
-}
+
 
 div.scoreContainer {
-  width: 60%;
   height: 100%;
   border: 5px solid #ddd;
   background: #808080;
@@ -77,75 +73,15 @@ div.scoreContainerOutline {
 }
 
 div.scoreContainerInner {
-  width: 100%;
   height: 100%;
   text-align: center;
+  margin:0 auto;
   display: inline-block;
 }
 
-div.dndTitleV1 {
-  width: 400px;
-  height: 32px;
-  position: relative;
-  left: 50%;
-  margin-left: -200px;
-  background: url(../images/dndTitleV1.png) no-repeat;
-  background-size: cover;
-  border-bottom: 1px solid #000;
-}
-div.dndTitleV2 {
-  width: 450px;
-  height: 24px;
-  position: relative;
-  left: 50%;
-  margin-left: -225px;
-  background: url(../images/dndTitleV2.png) no-repeat;
-  background-size: cover;
-  border-bottom: 1px solid #000;
-}
 
-div.noteContainer {
-  position: relative;
-  width: 600px;
-  left: 50%;
-  margin-left: -300px;
-  border-radius: 5px;
-  background: #fff;
-  border: 1px solid #ccc;
-  display: inline-block;
-  padding: 2px 0px 0px 5px;
-}
 
-div.noteHeader {
-  float: left;
-  font: bold 15px arial, verdana;
-  display: inline;
-  width: 55px;
-  overflow: auto;
-}
 
-div.noteInfo {
-  float: left;
-  font: 11px arvo;
-  display: inline;
-  width: 525px;
-  overflow: auto;
-  padding-top: 2px;
-}
-
-  div.noteInfo > p {
-    margin-bottom: 7px;
-  }
-
-    div.noteInfo > p:last-child {
-      margin-bottom: 10px;
-    }
-
-@media (max-width: 992px) {
-  .scoreContainer {
-    width: 90%;
-  }
-}
 
 div.rowScore {
   clear: both;
@@ -169,24 +105,17 @@ div.rowScore {
 .timerInfo {
   background: #ddd;
   color: black;
-  width: 170px;
-  margin: 8px;
+  margin: auto;
   text-align: center;
   display: inline-block;
   border: 1px solid black;
-  font-size: 18px;
   font-weight: bold;
   font-style: italic;
 }
 
-#trVideoButton {
-  background-color: #b9b9b9;
-}
 
-#trStartGameButton {
-  background-color: #c9c9c9;
-}
-
+#aNewGame { margin:auto;}
+#aAutoSort { margin: auto;}
 /* *********************************************************************************************  */
 /* *********************************************************************************************  */
 /* Dnd Stuff                                                                                      */
@@ -291,10 +220,6 @@ div.stateDiv:hover {
 div.stateDivNoHover {
   padding-top: 2px;
   float: left;
-  /*
-  display: inline-block;
-  position: relative;
-  */
   width: 100%;
 }
 
@@ -333,7 +258,7 @@ div.orderDiv {
 
 /* *********************************************************************************************  */
 /* *********************************************************************************************  */
-/* Jquery UI Stuff                                                                                      */
+/* Jquery UI Stuff                                                                                */
 /* *********************************************************************************************  */
 /* *********************************************************************************************  */
 ul.connectedSortable {
@@ -414,4 +339,779 @@ li.myFlashLi {
 }
 ul.notConnected {
   position:relative;
+}
+
+#trVideoButton {
+  background-color: #f5f2f2;
+  border-bottom:2px solid #fff;
+}
+
+#trStartGameButton {
+  background-color: #edebeb;
+}
+
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+/* Screen Size Adjustments                                                                        */
+/* *********************************************************************************************  */
+/* *********************************************************************************************  */
+#divImgContainer {
+  text-align:center;
+}
+#divVwBannerImg {
+  top: 5px;
+  z-index: 160;
+  margin: 0 auto;
+}
+a.fs {
+  font-size: 5px;
+}
+/* *** Less Than 576     *** */
+@media (max-width: 575.5px) {
+  body {
+    font-size:10px;
+  }
+  a.fs {
+    font-size: 9px;
+  }
+  div.scoreContainer {
+    width: 318px;
+  }
+  div#divDummy.timerInfo {
+    width: 80px;
+    font-size: 10px;
+  }
+  #jumbo2 {
+    display: none;
+  }
+  .divInstrZero {
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .instrBackground {
+    background: url(../images/bgWhiteOpacity45.png);
+    background-repeat: repeat;
+    border-radius: 25px;
+    border: 1px solid black;
+    vertical-align: text-top;
+    padding-left: 18px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+  }
+
+  div.dndTitleV1 {
+    width: 350px;
+    height: 32px;
+    position: relative;
+    left: 50%;
+    margin-left: -175px;
+    background: url(../images/dndTitleV1.png) no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #000;
+  }
+
+  div.dndTitleV2 {
+    width: 350px;
+    height: 24px;
+    position: relative;
+    left: 50%;
+    margin-left: -175px;
+    background: url(../images/dndTitleV2.png) no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #000;
+  }
+
+  .welcomePanel {
+    font-size: 12px;
+    font-weight: bold;
+    margin: 5px 0 5px 0;
+  }
+
+  .ulInstr {
+    margin-bottom: 0px;
+    list-style-position: outside;
+  }
+
+  .liInstr {
+    font-size: 10px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .tblInstr {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 10px;
+    border: none;
+  }
+
+  .btn-custom-vw {
+    background-color: hsl(0, 0%, 0%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4c4c4c", endColorstr="#000000");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#4c4c4c), to(#000000));
+    background-image: -moz-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -ms-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(100%, #000000));
+    background-image: -webkit-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -o-linear-gradient(top, #4c4c4c, #000000);
+    background-image: linear-gradient(#4c4c4c, #000000);
+    border-color: #000000 #000000 hsl(0, 0%, -7.5%);
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.49);
+    -webkit-font-smoothing: antialiased;
+    padding: 4px 4px;
+    font-size: 10px;
+  }
+
+  .ml {
+    margin-left: 35px;
+  }
+
+  div.ulContainer {
+    position: relative;
+    width: 350px;
+    margin: 0 0 10px -175px;
+    left: 50%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding-top: 5px;
+  }
+
+  div.tblContainer {
+    position: relative;
+    width: 330px;
+    margin-left: -115px;
+    left: 50%;
+  }
+
+  .tabble > tbody > tr > td {
+    vertical-align: middle;
+  }
+
+  div.noteContainer {
+    position: relative;
+    width: 350px;
+    left: 50%;
+    margin-left: -175px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 5px 0px 0px 10px;
+  }
+
+  div.noteHeader {
+    float: left;
+    font: bold 12px arial, verdana;
+    display: inline;
+    width: 50px;
+    overflow: auto;
+  }
+
+  div.noteInfo {
+    float: left;
+    font: 11px arvo;
+    display: inline;
+    width: 350px;
+    overflow: auto;
+    padding-top: 2px;
+  }
+
+  div.noteInfo > p {
+    margin-bottom: 7px;
+  }
+
+  div.noteInfo > p:last-child {
+    margin-bottom: 10px;
+  }
+}
+/* *** End Less Than 576 *** */
+/*****************************/
+/*****************************/
+/* *** 576 and up        *** */
+@media (min-width: 576px) {
+  a.fs {
+    font-size: 10px;
+  }
+
+  div.scoreContainer {
+    width: 450px;
+  }
+
+  div#divDummy.timerInfo {
+    width: 100px;
+    font-size: 12px;
+  }
+
+  #jumbo2 {
+    display: none;
+  }
+
+  .divInstrZero {
+    padding-top: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .instrBackground {
+    background: url(../images/bgWhiteOpacity45.png);
+    background-repeat: repeat;
+    border-radius: 25px;
+    border: 1px solid black;
+    vertical-align: text-top;
+    padding-left: 18px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+  }
+
+  div.dndTitleV1 {
+    width: 400px;
+    height: 32px;
+    position: relative;
+    left: 50%;
+    margin-left: -200px;
+    background: url(../images/dndTitleV1.png) no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #000;
+  }
+
+  div.dndTitleV2 {
+    width: 450px;
+    height: 24px;
+    position: relative;
+    left: 50%;
+    margin-left: -225px;
+    background: url(../images/dndTitleV2.png) no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #000;
+  }
+
+  .welcomePanel {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0 10px 0;
+  }
+
+  .ulInstr {
+    margin-bottom: 0px;
+    list-style-position: outside;
+  }
+
+  .liInstr {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .tblInstr {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 12px;
+    border: none;
+  }
+
+  .btn-custom-vw {
+    background-color: hsl(0, 0%, 0%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4c4c4c", endColorstr="#000000");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#4c4c4c), to(#000000));
+    background-image: -moz-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -ms-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(100%, #000000));
+    background-image: -webkit-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -o-linear-gradient(top, #4c4c4c, #000000);
+    background-image: linear-gradient(#4c4c4c, #000000);
+    border-color: #000000 #000000 hsl(0, 0%, -7.5%);
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.49);
+    -webkit-font-smoothing: antialiased;
+    padding:4px 8px;
+    font-size:12px;
+  }
+
+  .ml {
+    margin-left: 35px;
+  }
+
+  div.ulContainer {
+    position: relative;
+    width: 430px;
+    margin: 0 0 10px -215px;
+    left: 50%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding-top: 5px;
+  }
+
+  div.tblContainer {
+    position: relative;
+    width: 400px;
+    margin-left: -200px;
+    left: 50%;
+  }
+  .tabble>tbody>tr>td {vertical-align:middle;}
+
+  div.noteContainer {
+    position: relative;
+    width: 430px;
+    left: 50%;
+    margin-left: -215px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 5px 0px 0px 10px;
+  }
+
+  div.noteHeader {
+    float: left;
+    font: bold 15px arial, verdana;
+    display: inline;
+    width: 55px;
+    overflow: auto;
+  }
+
+  div.noteInfo {
+    float: left;
+    font: 11px arvo;
+    display: inline;
+    width: 420px;
+    overflow: auto;
+    padding-top: 2px;
+  }
+
+  div.noteInfo > p {
+    margin-bottom: 7px;
+  }
+
+  div.noteInfo > p:last-child {
+    margin-bottom: 10px;
+  }
+}
+
+
+/* *** End 576 and up    *** */
+/*****************************/
+/*****************************/
+/* *** 768 and up        *** */
+@media (min-width: 768px) {
+  #divVwBanner00 {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 76px;
+    background: url(../images/myCollapsedHeader01.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 160;
+    display: none;
+  }
+  #divCollapsedHeaderLine00 {
+    top: 30px;
+    left: 42px;
+    height: 15px;
+    background-color: transparent;
+    /* background-image:url(../images/topLine00A.png); */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAPCAIAAACqfTKuAAAABnRSTlMAAAAAAABupgeRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAPklEQVR4nGNgYGBgEBYVY2JiZGCqD5JnYmBgYGJgYGCQkhRn+vnnP5OEABtTprMkTJyJgYGB+drL/8zM7FwAxNIITxsAtQwAAAAASUVORK5CYII=);
+    background-repeat: repeat-x;
+    background-size: contain;
+    z-index: 90;
+    position: absolute;
+    display: none;
+    /* Firefox */
+    width: -moz-calc(100% - 88px);
+    /* WebKit */
+    width: -webkit-calc(100% - 88px);
+    /* Opera */
+    width: -o-calc(100% - 88px);
+    /* Standard */
+    width: calc(100% - 88px);
+  }
+  #divCollapsedHeaderLeft00 {
+    top: 9px;
+    left: 20px;
+    /* background-image:url(../images/myCollapsedHeaderLeft01.png); */
+    background-image: url(data:image/png;base64,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);
+    display: none;
+  }
+
+  #divCollapsedHeaderRight00 {
+    top: 9px;
+    right: 23px;
+    /* background-image:url(../images/myCollapsedHeaderRight01.png); */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAA9CAYAAAHND+msAAAACXBIWXMAAAsSAAALEgHS3X78AAAACXRFWHRDb21tZW50AACJKo0GAAAHrElEQVR4nL2YWWyUVRTHG40xPhhjfFDoNjOdpcvMdGbaznQfCmVpS6EspSwFChQQqghIQBHiggsCggsKiTExGrcHNdEHo8Y1aty3GNyNIhpcAqIxRo1ez+92bv2mnbWd8nDb+b7vnnvu2f7nf2+eUiqvvc61k/8M/WdyleOJuBcb51Sq7T0hNfRiUsjx3IyIc79+4XHk/9HTUqrmRz3n1vpsH+sZhwfqVd/0iv9FDq2vU3GLWkfiFwOz/GlEROUFm+cFBrVUuAp+XTmjQqFaPpyvZwRLi36IE2mstL89/MVbCbVYP4yYcP2yatXgt32QdMIt/REVDTpeWtJapuIm1FQUfx0oLVJsdU27V81r9hSz5UpP4c9xK7SEHE93Rz3nTI847ziwOjLSFf1tXv1y5+KQSriHer/to8u6KlXSTXbUubYM/xg3YUp1yaNJP+5ZGU6+NCYl/UiapMyBOU2e2tvW1o602WXP/7NvWrki2HEfceuCSaWqwlnw28x614amgP11/ZGNeGX2rqXVanajW0vybtHkssFdiuMVriQgwbIinT8Rb7EaWra91qlXIBAz61ybhnQSHTHl04tn+pTRl8iU8HW91fGmdEdLz07phJTuI/mSfrRuJOGGGHjpdvEvnkqUACmFGUBCOsGEwssleBgnmjdmJYzLlk4t1zBj3s1t9lRmrLm3tVyFJL5EjGdsN1iRUrilyvGUCH7f2eDSNkthsv2BlJpvXF6jqsqLjknCqoCUNmhC2V8ucEXq8Xtth0+PEcJ8ZMxt8gRFu2qLOPewmCzyjpko4PJCWUnB75jAAEvyZjW4ew6uq0Pzd/aiiX8L/P3YWlPyAPEmS8Fpfq+WycskEkltbqi0vyc7+KlNcn9Qm53q6crY2wtFU3HhhH+qy4u/tXo7UcjiHiQcFw6Pc1YZBuIlKp+Mc3vfqrCa0+RuzFpYQOKUzu0YSGQlLI46lsmWRwg3B+yv3Skxly2PzmYyy7T3rIUBSCsYZyV86Wy/DpW0mcezEgaKEaySes5aM2EKe4u/HOj0ZS+MRqE+BwSOzjLvxPP1GQnjLJqyeRYepe2nJNMKi9Z9IkxtK+yPaVayaEIz4h4Ev45fInxKOv42/vvchUrAIqn9cQ9rOryESAkArsTWrjSZFvcA1IjW7eHYNqntmC/UFQuCIxbKWyG0cfeKGkV3NRSHiYunlCkSRgoFm49etTCk/J7CE3HCVy+pUgYRBcNo5J+DpBGvTYGelCYQzHdRoJgvGLdLC5OGfMBJAIDhbsObXWH+Rf8K6x1SRPj0FnnAu5JdMIZTaIZeyMKPTQuX3HPLqoieA1FhHtxPa4Zi7I3RKYDcOA74ZaJQcjHH9v5NfTVK8PzBpN5e1VZBXHtIEp4NyON1gd6R3rY+bO0OKFJydoO7W1pPlWRZ5nFGI8xM0nTvlT1BnWGd9a7MMqy91nUNDhOhk3Ie2SFbLSe3BdvS57Zk1ley7WfNc53Ppr0sjf6TtMIwveH1nDGtAAxghutGgyTQCrbJdrMWZphcZ6GshSE0JbaJf41Kszjti1F1jOag/dUYCxidzSBoJoIJha0D/gkbunlFWK2X8MnOXs504TEpZgCiLTHs39YdhFl1nBbFDI6tOxeFhC94MmLhOVEMe6daAPDpYadmt6dFMYyfuwdcfW1vlebbgqAPjatiug6HNG5ATJMYd4tBMKyF57dWlzwMoSyQTpULpWktpgXSrKfWlNybbA5gTtabm46cKJbj7pub5lZysjuOB2AN5ps0wl5hTB9y9jJh4DiVCblPq5grCpol5AAmBZvAAxxwpfPoIxjtG6W7pW0Lcn0zZothJiiiN24TwuFzFf6CxRwUBcFegTPAxmnC0nz7cxZjaVJHoIG4m/MCd07WEwtKIW7Tws7D5h2XR2S99V1KxQIMh0gkDp5YxDuIOi42tJnvxJuGHw05npfFNdHj0pIjIzSLYzGKdwjKsdmUilmQJoA7UWx2Lu7UfAa6ycLcJEKQuMth8XVSZiAa7Zt2Rpzxikk0BkSZmwIr5x9SLKVyH6dkqwALd08qPUOUHsVqibfmuJ0N7j7IVCIgkflnRoOOF+lmt66JqBsEeLhb8sYuumKMltK8XyuG73IFwUTrBMqFOAMg3HWQ3VAh6jaZYspuoVZcq7FdwvCkuWHjgqmr0Y2HjmjFYsFqmD1x8bsLTxBjkApXw+45EoirzwNEtswPKG49XbZ8RbwJE6GA4LI4a5jN7++P6POJuLtFEvSNpFkNvdTJFSN48JjNsri46zOskRgrmDJ32yQUCvGCjGek5KKSbHeTXNBxnVxCokZVTiimVokbN9IAB1cuQ+Uk1vbK6YM6Nu/wFO8pwVHXsVD6g2Q1GbtVmIc5eeI62cC7xJB3Uop3kXQ5AxCGHHecnGDhWxJjhYX0ZOqYsHCqIwTElOOU9a5+TIq5E93Q5dfxIs7WuyWsdNomUqdDCTV5sElEx6wYV64V2Bx+Zhs+h2YRyFVbnBf15NOBYkTgEXBayu2kxNyXbTyztpg4AgYkGRme6nojp4oZVrIHFIJy5nQ/ropNZlM+ZHU2x5QxKWbQXTgLGuJ3WhRLCU3gSsccYbiFHHfF3N6IYsXlOgBBs8+FUsZ/SlS3aqQ6vdEAAAAASUVORK5CYII=);
+    display: none;
+  }
+  a.fs {
+    font-size: 12px;
+  }
+  div.scoreContainer {
+    width: 550px;
+  }
+  div#divDummy.timerInfo {
+    width: 120px;
+    font-size: 14px;
+  }
+  #jumbo2 {
+    display: block;
+    min-height: 0px;
+    height: 75px;
+  }
+  .divInstrZero {
+    padding-top: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .instrBackground {
+    background: url(../images/bgWhiteOpacity45.png);
+    background-repeat: repeat;
+    border-radius: 25px;
+    border: 1px solid black;
+    vertical-align: text-top;
+    padding-left: 18px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+  }
+
+  div.dndTitleV1 {
+    width: 400px;
+    height: 32px;
+    position: relative;
+    left: 50%;
+    margin-left: -200px;
+    background: url(../images/dndTitleV1.png) no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #000;
+  }
+
+  div.dndTitleV2 {
+    width: 450px;
+    height: 24px;
+    position: relative;
+    left: 50%;
+    margin-left: -225px;
+    background: url(../images/dndTitleV2.png) no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #000;
+  }
+
+  .welcomePanel {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0 10px 0;
+  }
+
+  .ulInstr {
+    margin-bottom: 0px;
+    list-style-position: outside;
+  }
+
+  .liInstr {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .tblInstr {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 12px;
+    border: none;
+  }
+
+  .btn-custom-vw {
+    background-color: hsl(0, 0%, 0%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4c4c4c", endColorstr="#000000");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#4c4c4c), to(#000000));
+    background-image: -moz-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -ms-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(100%, #000000));
+    background-image: -webkit-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -o-linear-gradient(top, #4c4c4c, #000000);
+    background-image: linear-gradient(#4c4c4c, #000000);
+    border-color: #000000 #000000 hsl(0, 0%, -7.5%);
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.49);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .ml {
+    margin-left: 35px;
+  }
+
+  div.ulContainer {
+    position: relative;
+    width: 550px;
+    margin: 0 0 10px -275px;
+    left: 50%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding-top: 5px;
+  }
+
+  div.tblContainer {
+    position: relative;
+    width: 500px;
+    margin-left: -250px;
+    left: 50%;
+  }
+  .tabble > tbody > tr > td {
+    vertical-align: middle;
+  }
+
+  div.noteContainer {
+    position: relative;
+    width: 550px;
+    left: 50%;
+    margin-left: -275px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 5px 0px 0px 10px;
+  }
+
+  div.noteHeader {
+    float: left;
+    font: bold 15px arial, verdana;
+    display: inline;
+    width: 55px;
+    overflow: auto;
+  }
+
+  div.noteInfo {
+    float: left;
+    font: 11px arvo;
+    display: inline;
+    width: 425px;
+    overflow: auto;
+    padding-top: 2px;
+  }
+
+  div.noteInfo > p {
+    margin-bottom: 7px;
+  }
+
+  div.noteInfo > p:last-child {
+    margin-bottom: 10px;
+  }
+}
+/* *** End 768 and up    *** */
+/*****************************/
+/*****************************/
+/* *** 992 and up        *** */
+@media (min-width: 992px) {
+  #jumbo2 {
+    display: block;
+    min-height: 0px;
+    height: 75px;
+  }
+  #divVwBanner00 {
+    position: absolute;
+    top: 5px;
+    width: 100%;
+    height: 76px;
+    background: url(../images/myCollapsedHeader01.png);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 160;
+    display: none;
+  }
+  #divCollapsedHeaderLine00 {
+    top: 35px;
+    left: 42px;
+    height: 15px;
+    background-color: transparent;
+    /* background-image:url(../images/topLine00A.png); */
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAPCAIAAACqfTKuAAAABnRSTlMAAAAAAABupgeRAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAPklEQVR4nGNgYGBgEBYVY2JiZGCqD5JnYmBgYGJgYGCQkhRn+vnnP5OEABtTprMkTJyJgYGB+drL/8zM7FwAxNIITxsAtQwAAAAASUVORK5CYII=);
+    background-repeat: repeat-x;
+    background-size: contain;
+    z-index: 90;
+    position: absolute;
+    display: none;
+    /* Firefox */
+    width: -moz-calc(100% - 88px);
+    /* WebKit */
+    width: -webkit-calc(100% - 88px);
+    /* Opera */
+    width: -o-calc(100% - 88px);
+    /* Standard */
+    width: calc(100% - 88px);
+  }
+  a.fs {
+    font-size: 14px;
+  }
+  div.scoreContainer {
+    width: 700px;
+  }
+  div#divDummy.timerInfo {
+    width: 170px;
+    font-size: 18px;
+  }
+  #divVwBanner00 {
+    top: 0px;
+    display: block;
+  }
+  #divCollapsedHeaderLine00 {
+    top: 30px;
+    display: block;
+  }
+  #divCollapsedHeaderLeft00 {
+    top: 9px;
+    display: block;
+  }
+  #divCollapsedHeaderRight00 {
+    top: 9px;
+    display: block;
+  }
+  .divInstrZero {
+    padding-top: 10px;
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+  .instrBackground {
+    background: url(../images/bgWhiteOpacity45.png);
+    background-repeat: repeat;
+    border-radius: 25px;
+    border: 1px solid black;
+    vertical-align: text-top;
+    padding-left: 18px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-top: 25px;
+    margin-bottom: 30px;
+  }
+  div.dndTitleV1 {
+    width: 400px;
+    height: 32px;
+    position: relative;
+    left: 50%;
+    margin-left: -200px;
+    background: url(../images/dndTitleV1.png) no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #000;
+  }
+
+  div.dndTitleV2 {
+    width: 450px;
+    height: 24px;
+    position: relative;
+    left: 50%;
+    margin-left: -225px;
+    background: url(../images/dndTitleV2.png) no-repeat;
+    background-size: cover;
+    border-bottom: 1px solid #000;
+  }
+  .welcomePanel {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0 10px 0;
+  }
+  .ulInstr {
+    margin-bottom: 0px;
+    list-style-position: outside;
+  }
+
+  .liInstr {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 6px;
+  }
+
+  .tblInstr {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 12px;
+    border:none;
+  }
+  .btn-custom-vw {
+    background-color: hsl(0, 0%, 0%) !important;
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#4c4c4c", endColorstr="#000000");
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#4c4c4c), to(#000000));
+    background-image: -moz-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -ms-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #4c4c4c), color-stop(100%, #000000));
+    background-image: -webkit-linear-gradient(top, #4c4c4c, #000000);
+    background-image: -o-linear-gradient(top, #4c4c4c, #000000);
+    background-image: linear-gradient(#4c4c4c, #000000);
+    border-color: #000000 #000000 hsl(0, 0%, -7.5%);
+    color: #fff !important;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.49);
+    -webkit-font-smoothing: antialiased;
+  }
+  .ml {
+    margin-left: 35px;
+  }
+  div.ulContainer {
+    position: relative;
+    width: 600px;
+    margin: 0 0 10px -300px;
+    left: 50%;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding-top: 5px;
+  }
+  div.tblContainer {
+    position: relative;
+    width: 550px;
+    margin-left: -275px;
+    left: 50%;
+  }
+  .tabble > tbody > tr > td {
+    vertical-align: middle;
+  }
+  div.noteContainer {
+    position: relative;
+    width: 600px;
+    left: 50%;
+    margin-left: -300px;
+    border-radius: 5px;
+    background: #fff;
+    border: 1px solid #000;
+    display: inline-block;
+    padding: 5px 0px 0px 10px;
+  }
+
+  div.noteHeader {
+    float: left;
+    font: bold 15px arial, verdana;
+    display: inline;
+    width: 55px;
+    overflow: auto;
+  }
+
+  div.noteInfo {
+    float: left;
+    font: 11px arvo;
+    display: inline;
+    width: 525px;
+    overflow: auto;
+    padding-top: 2px;
+  }
+
+  div.noteInfo > p {
+    margin-bottom: 7px;
+  }
+
+  div.noteInfo > p:last-child {
+    margin-bottom: 10px;
+  }
 }

@@ -32,7 +32,7 @@
   <script src="~/lib/myjquery/ujQuiDndPlugin.js"></script>
   <script src="~/lib/js4view/StatesTwo.js"></script>
 }
-<div id="jumbo2" style="display:block;" class="jumbotron">
+<div id="jumbo2" class="jumbotron">
   <div id="divTlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
   <div id="divBlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
   <div id="divLlineJumboCollapsed00" class="myJumboCollapsedLeftRightLine" style="display:block;"></div>
@@ -64,24 +64,28 @@
               <div id="divInstBackground" class="instrBackground">
                 <div class="dndTitleV2"></div>
                 <div class="welcomePanel" style="text-align:center;"><span>Welcome to another drag and drop demo in the guise of a game!</span></div>
-                <ul class="ulInstr">
-                  <li class="liInstr">Upon hitting the start button below, you will be presented with the names of U.S. States in random order – and a timer will start!</li>
-                  <li class="liInstr">State names that by chance land in their sort order position are removed from play and appear as faded entries.</li>
-                  <li class="liInstr">Select a state by clicking its icon and holding the mouse button down.
-                  <li class="liInstr">
-                    Drag the state to its new position, and drop it by releasting the mouse button.
-                  </li>
-                </ul>
-                <table class="table table-responsive tblInstr">
-                  <tr id="trVideoButton">
-                    <td align="right">To view a video of a move in the game, select this button: </td>
-                    <td><a id="aViewVideo" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">View Instruction Video &raquo;</a></td>
-                  </tr>
-                  <tr id="trStartGameButton">
-                    <td align="right">To start the game, select this button: </td>
-                    <td><a id="aStartGame" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">Start Game &raquo;</a></td>
-                  </tr>
-                </table>
+                <div class="ulContainer">
+                  <ul class="ulInstr">
+                    <li class="liInstr">Upon hitting the start button below, you will be presented with the names of U.S. States in random order – and a timer will start!</li>
+                    <li class="liInstr">State names that by chance land in their sort order position are removed from play and appear as faded entries.</li>
+                    <li class="liInstr">Select a state by clicking its icon and holding the mouse button down.
+                    <li class="liInstr">
+                      Drag the state to its new position, and drop it by releaseing the mouse button.
+                    </li>
+                  </ul>
+                </div>
+                <div class="tblContainer">
+                  <table class="table table-responsive tblInstr" >
+                    <tr id="trVideoButton">
+                      <td align="right">To view a video of a move in the game, select this button:</td>
+                      <td><a id="aViewVideo" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">View Instruction Video &raquo;</a></td>
+                    </tr>
+                    <tr id="trStartGameButton">
+                      <td align="right">To start the game, select this button: </td>
+                      <td><a id="aStartGame" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">Start Game &raquo;</a></td>
+                    </tr>
+                  </table>
+                </div>
                 <div id="divNoteContainer" class="noteContainer">
                   <div class="noteHeader">Notes:</div>
                   <div class="noteInfo">
@@ -126,13 +130,13 @@
         <table style="border-collapse:collapse;display:inline-block;" class="table-responsive">
           <tr>
             <td align="right">
-              <a id="aNewGame" class="btn btn-default btn-custom-vw" href="" onclick="clickHandler(event); return false;" style="margin-right:15px;">Start A New Game &raquo;</a>
+              <a id="aNewGame" class="btn btn-default btn-custom-vw fs" href="" onclick="clickHandler(event); return false;" style="margin-right:15px;">Start A New Game &raquo;</a>
             </td>
             <td align="center">
               <div id="divDummy" class="timerInfo">00:00:00.000</div>
             </td>
             <td align="left">
-              <a id="aAutoSort" class="btn btn-default btn-custom-vw" href="" onclick="clickHandler(event); return false;" style="margin-left:15px;">Auto Sort States &raquo;</a>
+              <a id="aAutoSort" class="btn btn-default btn-custom-vw fs" href="" onclick="clickHandler(event); return false;" style="margin-left:15px;">Auto Sort States &raquo;</a>
             </td>
           </tr>
         </table>

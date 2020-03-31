@@ -31,7 +31,7 @@ var szWidth = 0;
 var szDial = { "wheel": 0, "knob": 0 };
 // *********************
 var isNewDialSize = function () {
-  debugger;
+  //debugger;
   var szNewDial = {"wheel":0,"knob":0}
   var szNewWidth = $('body').outerWidth();
   var isNewDial = false;
@@ -201,7 +201,7 @@ $(document).ready(
     $('#wheelTune').removeAttr('_jogdial_');
     $('#wheelTune').empty();
     $('#wheelTune').closest('body');
-    debugger;
+    //debugger;
     dialVol = JogDial(
       document.getElementById('wheelVol'), {
       wheelSize: szDial.wheel+'px',

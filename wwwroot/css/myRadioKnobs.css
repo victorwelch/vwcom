@@ -60,6 +60,20 @@
 /* Common Settings -- same for screen sizes                                                       */
 /* *********************************************************************************************  */
 
+#divTlineJumboCollapsed00 { display:block; }
+#divBlineJumboCollapsed00 { display:block; }
+#divLlineJumboCollapsed00 { display:block; }
+#divRlineJumboCollapsed00 { display:block; }
+#divUlCrnrJumboCollapsed00 { display:block; }
+#divUrCrnrJumboCollapsed00 { display:block; }
+#divLlCrnrJumboCollapsed00 { display:block; }
+#divLrCrnrJumboCollapsed00 { display:block; }
+#divVwBanner00 { display:block; }
+#divCollapsedHeaderLine0 { display:block; }
+#divCollapsedHeaderLeft0 { display:block; }
+#divCollapsedHeaderRight0 { display:block; }
+
+
 #radioDisplay {
   position: relative;
   margin-top: 10px;
@@ -230,6 +244,10 @@ div.vol {
       display: inline-block;
       float: left;
     }
+    #jumbo2 {
+      display: none;
+    }
+
     #radioDisplay {
       width: 332px;
       height: 145px;
@@ -323,7 +341,7 @@ div.vol {
       left: 142px;
     }
   }
-  /* *** Ebd Less Than 576 *** */
+  /* *** End Less Than 576 *** */
   /*****************************/
   /*****************************/
   /* *** 576 and up        *** */
@@ -346,6 +364,10 @@ div.vol {
     .isMinWidth992 {
       display: inline-block;
       float: left;
+    }
+
+    #jumbo2 {
+      display: none;
     }
 
     #radioDisplay {
@@ -482,7 +504,24 @@ div.vol {
       display: inline-block;
       float: left;
     }
+    #jumbo2 {
+      top: 0px;
+      display: block;
+    }
+    #divCollapsedHeaderLine00 {
+      top:30px;
+      display: block;
+    }
 
+    #divCollapsedHeaderLeft00 {
+      top:9px;
+      display: block;
+    }
+
+    #divCollapsedHeaderRight00 {
+      top: 9px;
+      display: block;
+    }
     #radioDisplay {
       width: 640px;
       height: 234px;
@@ -617,6 +656,22 @@ div.vol {
       float: right;
     }
 
+    #jumbo2 {
+      top:0px;
+      display: block;
+    }
+
+    #divCollapsedHeaderLine00 {
+      display: block;
+    }
+
+    #divCollapsedHeaderLeft00 {
+      display: block;
+    }
+
+    #divCollapsedHeaderRight00 {
+      display: block;
+    }
     #radioDisplay {
       width: 740px;
       height: 270px;

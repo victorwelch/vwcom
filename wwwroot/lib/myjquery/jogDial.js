@@ -531,7 +531,7 @@
 //  }
 //
   window.JogDial = JogDial;
-  debugger;
+  //debugger;
 //
 })(window);
 

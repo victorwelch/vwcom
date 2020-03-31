@@ -10,7 +10,7 @@
   <script src="~/lib/myjquery/uTblDndPlugin.js"></script>
   <script src="~/lib/js4view/StatesOne.js"></script>
 }
-<div id="jumbo2" style="display:block;" class="jumbotron">
+<div id="jumbo2" class="jumbotron">
   <div id="divTlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
   <div id="divBlineJumboCollapsed00" class="myJumboCollapsedTopBotLine" style="display:block;"></div>
   <div id="divLlineJumboCollapsed00" class="myJumboCollapsedLeftRightLine" style="display:block;"></div>
@@ -19,10 +19,15 @@
   <div id="divUrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myUrCrnrImage" style="display:block;"></div>
   <div id="divLlCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLlCrnrImage" style="display:block;"></div>
   <div id="divLrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLrCrnrImage" style="display:block;"></div>
-  <div id="divVwBanner00" style="display:block;"></div>
-  <div id="divCollapsedHeaderLine00" style="display:block;"></div>
-  <div id="divCollapsedHeaderLeft00" class="collapsedHdrLeftRight" style="display:block;"></div>
-  <div id="divCollapsedHeaderRight00" class="collapsedHdrLeftRight" style="display:block;"></div>
+  <div id="divLogoContainer">
+    <div id="divVwBanner00"></div>
+    <div id="divCollapsedHeaderLine00"></div>
+    <div id="divCollapsedHeaderLeft00" class="collapsedHdrLeftRight"></div>
+    <div id="divCollapsedHeaderRight00" class="collapsedHdrLeftRight"></div>
+  </div>
+  <div id="divImgContainer" style="text-align:center">
+    <div id="divVwBannerImg"></div>
+  </div>
 </div>
 <div id="myRow0" class="row myRow myRow0Class">
   <div id="col0" class="col-md-12">
@@ -55,6 +60,7 @@
                     <td align="right">To view a video of a move in the game, select this button: </td>
                     <td><a id="aViewVideo" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">View Instruction Video &raquo;</a></td>
                   </tr>
+                  <tr><td style="display:none;"></td></tr>
                   <tr id="trStartGameButton">
                     <td align="right">To start the game, select this button: </td>
                     <td><a id="aStartGame" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">Start Game &raquo;</a></td>
@@ -99,16 +105,16 @@
   <div id="divScoreContainer" class="scoreContainer">
     <div class="scoreContainerOutline">
       <div class="scoreContainerInner">
-        <table style="border-collapse:collapse;display:inline-block;" class="table-responsive">
+        <table id="scoreTbl" style="border-collapse:collapse;display:inline-block;border:none;">
           <tr>
-            <td align="right">
-              <a id="aNewGame" class="btn btn-default btn-custom-vw" href="" onclick="clickHandler(event); return false;" style="margin-right:15px;">Start A New Game &raquo;</a>
+            <td align="center" style="width:32%">
+              <a id="aNewGame" class="btn btn-default btn-custom-vw fs" href="" margin:auoonclick="clickHandler(event); return false;"><span>Start A New Game &raquo;</span></a>
             </td>
-            <td align="center">
-              <div id="divDummy" class="timerInfo">00:00:00.000</div>
+            <td align="center" style="width:34%">
+              <div id="divDummy" class="timerInfo"><span>00:00:00.000</span></div>
             </td>
-            <td align="left">
-              <a id="aAutoSort" class="btn btn-default btn-custom-vw" href="" onclick="clickHandler(event); return false;" style="margin-left:15px;">Auto Sort States &raquo;</a>
+            <td align="center" style="width:32%">
+              <a id="aAutoSort" class="btn btn-default btn-custom-vw fs" href="" onclick="clickHandler(event); return false;"><span>Auto Sort States &raquo;</span></a>
             </td>
           </tr>
         </table>
@@ -117,25 +123,29 @@
   </div>
 </div>
 <div id="myRow1" class="row myRow statesRowOne">
-  <div id="col1" class="col-md-4 myColMd4Left" style="display:none;background:transparent;" notshow="true">
-    <div id="divCol1Wrap" style="clear:both;position:relative;top:0;left:0;">
-    </div>
-    <div id="spacerdiv1" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
-      <img id="spacerimg1" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
-    </div>
-  </div>
-  <div id="col2" class="col-md-4 myColMd4Center" style="display:none;background:transparent;" notshow="true">
-    <div id="divCol2Wrap" style="clear:both;position:relative;top:0;left:0;">
-    </div>
-    <div id="spacerdiv2" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
-      <img id="spacerimg2" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
-    </div>
-  </div>
-  <div id="col3" class="col-md-4 myColMd4Right" style="display:none;background:transparent;" notshow="true">
-    <div id="divCol3Wrap" style="clear:both;position:relative;top:0;left:0;">
-    </div>
-    <div id="spacerdiv3" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
-      <img id="spacerimg3" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
-    </div>
+  <div class="col-md-12">
+    <table width="100%" style="margin-top:10px;">
+      <tr><td id="col1" style="vertical-align: top;">
+        <div id="divCol1Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
+        </div>
+        <div id="spacerdiv1" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+          <img id="spacerimg1" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+        </div>
+      </td>
+      <td id="col2" style="vertical-align: top;">
+        <div id="divCol2Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
+        </div>
+        <div id="spacerdiv2" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+          <img id="spacerimg2" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+        </div>
+      </td>
+      <td id="col3" style="vertical-align: top;">
+        <div id="divCol3Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
+        </div>
+        <div id="spacerdiv3" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+          <img id="spacerimg3" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+        </div>
+      </td></tr>
+    </table>
   </div>
 </div>
