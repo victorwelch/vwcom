@@ -1,0 +1,16 @@
+@media (max-width: 575.5px) {
+  div.statesContainer {
+    position: relative;
+    width: 408px;
+    margin: 0 0 0 -218px;
+    left: 50%;
+  }
+ .statesRowOne {
+    clear: both;
+    position: relative;
+    top: 0;
+    display: none;
+    background: url(../images/bgDamascus03.png);
+    background-repeat: repeat;
+  }
+}

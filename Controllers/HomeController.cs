@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using vwcom.Models;
 using System;
 using System.Diagnostics;
@@ -17,18 +17,24 @@ namespace vwcom.Controllers
         }
         public IActionResult Index()
         {
+            Models.UtilVariables.Context = HttpContext;
+            ViewData["BaseUrl"] = Models.UtilVariables.BaseUrl();
             ViewData["Title"] = "VictorWelch.com: Home";
             return View();
         }
 
         public IActionResult About()
         {
-            ViewData["Title"] = "VictorWelch.com: About";
-            return View();
+          Models.UtilVariables.Context = HttpContext;
+          ViewData["BaseUrl"] = Models.UtilVariables.BaseUrl();
+          ViewData["Title"] = "VictorWelch.com: About";
+          return View();
         }
 
         public IActionResult Contact()
         {
+            Models.UtilVariables.Context = HttpContext;
+            ViewData["BaseUrl"] = Models.UtilVariables.BaseUrl();
             ViewData["Title"] = "VictorWelch.com: Contact";
             return View();
         }
@@ -41,7 +47,7 @@ namespace vwcom.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(new ErrorViewModel { RequestId = Activity.Current.Id ?? HttpContext.TraceIdentifier });
         }
     }
 }

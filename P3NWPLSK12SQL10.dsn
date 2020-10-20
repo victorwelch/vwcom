@@ -1,0 +1,8 @@
+[ODBC]
+DRIVER=SQL Server Native Client 11.0
+UID=myvictorwelch
+DATABASE=myvictorwelch_
+WSID=OIT-121107
+APP=Microsoft® Visual Studio®
+SERVER=184.168.194.55
+Description=myvictorwelch_

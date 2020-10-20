@@ -248,7 +248,7 @@
       $('body').bind('mouseup', myMouseUp);
       $('#myContainer').css('cursor', 'move');
       $('#myContainer').find('*').css('cursor', 'move');
-      $(this).css('cursor', 'move');
+      $(ev.target).css('cursor', 'move');
       vw$SetGlobal('isBusy', false);
       return false;
     };
@@ -711,7 +711,7 @@
       ev.preventDefault();
       ev.stopPropagation();
       ev = ifAuto(ev);
-      $(this).css('cursor', 'move');
+      $(ev.target).css('cursor', 'move');
       uInfoObj.moveMouse(ev);
       vw$SetGlobal('isBusy', false);
       return false;
@@ -984,7 +984,9 @@
         }
         //
         this.myAutoObj = autoFactory();
+        //$('*').css('cursor,none')
         this.myAutoObj.init();
+        //$('*').css('cursor,default')
       }
     };
     return myResult;

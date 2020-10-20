@@ -176,7 +176,7 @@ doAppendStatesHtml = function () {
 doDone = function () {
   myTimerObj.stop();
   $('#aNewGame').parent().css('opacity', '');
-  $('#aAutoSort').parent().css('opacity', '');
+  //$('#aAutoSort').parent().css('opacity', '');
 };
 //* On click handler
 clickHandler = function (ev) {
@@ -197,6 +197,7 @@ clickHandler = function (ev) {
       }
       //
       $('#divDummy').html('00:00:00.000');
+      $('#aAutoSort').parent().css('opacity', '');
       doGetStates();
       break;
     case 'aAutoSort':

@@ -1,15 +1,11 @@
-﻿var myUtil = myUtil || {};
+var myUtil = myUtil || {};
 //
 myUtil.myImgArray = [];
 myUtil.myJsonVar = {};
 myUtil.myHtmlList = [];
 //
 myUtil.myGetBaseUrl = function () {
-    var myUrlParts = window.location.href.split('/');
-    if (myUrlParts.length > 3) {
-        myUrlParts.splice(3, myUrlParts.length - 3);
-    }
-    return myUrlParts.join('/');
+    return document.baseURI;
 };
 //
 var myUtilUrlHelper = function () {

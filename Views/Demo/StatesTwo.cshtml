@@ -4,6 +4,7 @@
 }
 @section css {
   <link href="@Url.Content("~/css/myStatesDemo.css")" rel="stylesheet" />
+  <link href="@Url.Content("~/css/myStates2Demo.css")" rel="stylesheet" />
   <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css"
         asp-fallback-href="~/lib/jqueryui/jquery-ui.min.css"
@@ -75,7 +76,7 @@
                   </ul>
                 </div>
                 <div class="tblContainer">
-                  <table class="table table-responsive tblInstr" >
+                  <table class="table table-responsive tblInstr">
                     <tr id="trVideoButton">
                       <td align="right">To view a video of a move in the game, select this button:</td>
                       <td><a id="aViewVideo" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">View Instruction Video &raquo;</a></td>
@@ -109,7 +110,7 @@
               <div style="display:inline-block;">
                 <div>
                   <video id="videoCtrl" width="640" height="419" controls muted preload="auto">
-                    <source src="../images/dndInstrShort.mp4" type="video/mp4">
+                    <source src="~/images/dndInstrShort.mp4" type="video/mp4">
                   </video>
                 </div>
               </div>
@@ -119,7 +120,7 @@
       </div>
     </div>
     <div id="spacerdiv0" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;text-align:center;">
-      <img id="spacerimg0" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+      <img id="spacerimg0" src="~/images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
     </div>
   </div>
 </div>
@@ -144,26 +145,35 @@
     </div>
   </div>
 </div>
-<div id="myRow1" class="row myRow" style="clear:both;position:relative;top:0;display:none;background:url(../images/bgDamascus03.png);background-repeat:repeat;" notshow="true">
-  <div id="col1" class="col-md-4 myColMd4Left" style="display:none;background:transparent;" notshow="true">
-    <div id="divCol1Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
-    </div>
-    <div id="spacerdiv1" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
-      <img id="spacerimg1" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
-    </div>
-  </div>
-  <div id="col2" class="col-md-4 myColMd4Center" style="display:none;background:transparent;" notshow="true">
-    <div id="divCol2Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
-    </div>
-    <div id="spacerdiv2" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
-      <img id="spacerimg2" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
-    </div>
-  </div>
-  <div id="col3" class="col-md-4 myColMd4Right" style="display:none;background:transparent;" notshow="true">
-    <div id="divCol3Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
-    </div>
-    <div id="spacerdiv3" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
-      <img id="spacerimg3" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+<div id="myRow1" class="row myRow statesRowOne" notshow="true">
+  <div class="col-md-12">                                                                                        
+    <div class="statesContainer">
+      <table width="100%" style="margin-top:10px;">
+        <tr>
+          <td id="col1" style="vertical-align: top;text-align:right;">
+            <div id="divCol1Wrap" style="clear:both;position:relative;top:0;left:0;">
+            </div>
+            <div id="spacerdiv1" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+              <img id="spacerimg1" src="~/images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+            </div>
+          </td>
+          <td id="col2" style="vertical-align: top;text-align:center;">
+            <div id="divCol2Wrap" style="clear:both;position:relative;top:0;left:0">
+            </div>
+            <div id="spacerdiv2" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+              <img id="spacerimg2" src="~/images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+            </div>
+          </td>
+          <td id="col3" style="vertical-align: top;text-align:left;">
+            <div id="divCol3Wrap" style="clear:both;position:relative;top:0;left:0;">
+            </div>
+            <div id="spacerdiv3" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+              <img id="spacerimg3" src="~/images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+            </div>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
+

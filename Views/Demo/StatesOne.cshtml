@@ -19,15 +19,10 @@
   <div id="divUrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myUrCrnrImage" style="display:block;"></div>
   <div id="divLlCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLlCrnrImage" style="display:block;"></div>
   <div id="divLrCrnrJumboCollapsed00" class="myJumboCollapsedCrnr myLrCrnrImage" style="display:block;"></div>
-  <div id="divLogoContainer">
-    <div id="divVwBanner00"></div>
-    <div id="divCollapsedHeaderLine00"></div>
-    <div id="divCollapsedHeaderLeft00" class="collapsedHdrLeftRight"></div>
-    <div id="divCollapsedHeaderRight00" class="collapsedHdrLeftRight"></div>
-  </div>
-  <div id="divImgContainer" style="text-align:center">
-    <div id="divVwBannerImg"></div>
-  </div>
+  <div id="divVwBanner00" style="display:block;"></div>
+  <div id="divCollapsedHeaderLine00" style="display:block;"></div>
+  <div id="divCollapsedHeaderLeft00" class="collapsedHdrLeftRight" style="display:block;"></div>
+  <div id="divCollapsedHeaderRight00" class="collapsedHdrLeftRight" style="display:block;"></div>
 </div>
 <div id="myRow0" class="row myRow myRow0Class">
   <div id="col0" class="col-md-12">
@@ -47,25 +42,28 @@
               <div id="divInstBackground" class="instrBackground">
                 <div class="dndTitleV1"></div>
                 <div class="welcomePanel" style="text-align:center;"><span>Welcome to a drag and drop demo, in the guise of a game!</span></div>
-                <ul class="ulInstr">
-                  <li class="liInstr">Upon hitting the start button below, you will be presented with the names of U.S. States in random order – and a timer will start!</li>
-                  <li class="liInstr">State names that by chance land in their sort order position are removed from play and appear as faded entries.</li>
-                  <li class="liInstr">Select a state by clicking its icon and holding the mouse button down.
-                  <li class="liInstr">
-                    Drag the state to its new position, and drop it by releasting the mouse button.
-                  </li>
-                </ul>
-                <table class="table table-responsive tblInstr">
-                  <tr id="trVideoButton">
-                    <td align="right">To view a video of a move in the game, select this button: </td>
-                    <td><a id="aViewVideo" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">View Instruction Video &raquo;</a></td>
-                  </tr>
-                  <tr><td style="display:none;"></td></tr>
-                  <tr id="trStartGameButton">
-                    <td align="right">To start the game, select this button: </td>
-                    <td><a id="aStartGame" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">Start Game &raquo;</a></td>
-                  </tr>
-                </table>
+                <div class="ulContainer">
+                  <ul class="ulInstr">
+                    <li class="liInstr">Upon hitting the start button below, you will be presented with the names of U.S. States in random order – and a timer will start!</li>
+                    <li class="liInstr">State names that by chance land in their sort order position are removed from play and appear as faded entries.</li>
+                    <li class="liInstr">Select a state by clicking its icon and holding the mouse button down.
+                    <li class="liInstr">
+                      Drag the state to its new position, and drop it by releasting the mouse button.
+                    </li>
+                  </ul>
+                </div>
+                <div class="tblContainer">
+                  <table class="table table-responsive tblInstr">
+                    <tr id="trVideoButton">
+                      <td align="right">To view a video of a move in the game, select this button: </td>
+                      <td><a id="aViewVideo" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">View Instruction Video &raquo;</a></td>
+                    </tr>
+                    <tr id="trStartGameButton">
+                      <td align="right">To start the game, select this button: </td>
+                      <td><a id="aStartGame" class="btn btn-default btn-custom-vw ml" href="" onclick="clickHandler(event); return false;">Start Game &raquo;</a></td>
+                    </tr>
+                  </table>
+                </div>
                 <div id="divNoteContainer" class="noteContainer">
                   <div class="noteHeader">Notes:</div>
                   <div class="noteInfo">
@@ -87,7 +85,7 @@
               <div style="display:inline-block;">
                 <div>
                   <video id="videoCtrl" width="640" height="419" controls muted preload="auto">
-                    <source src="../images/dndInstrShort.mp4" type="video/mp4">
+                    <source src="~/images/dndInstrShort.mp4" type="video/mp4">
                   </video>
                 </div>
               </div>
@@ -97,7 +95,7 @@
       </div>
     </div>
     <div id="spacerdiv0" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;text-align:center;">
-      <img id="spacerimg0" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+      <img id="spacerimg0" src="~/images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
     </div>
   </div>
 </div>
@@ -108,7 +106,7 @@
         <table id="scoreTbl" style="border-collapse:collapse;display:inline-block;border:none;">
           <tr>
             <td align="center" style="width:32%">
-              <a id="aNewGame" class="btn btn-default btn-custom-vw fs" href="" margin:auoonclick="clickHandler(event); return false;"><span>Start A New Game &raquo;</span></a>
+              <a id="aNewGame" class="btn btn-default btn-custom-vw fs" href="" onclick="clickHandler(event); return false;"><span>Start A New Game &raquo;</span></a>
             </td>
             <td align="center" style="width:34%">
               <div id="divDummy" class="timerInfo"><span>00:00:00.000</span></div>
@@ -124,28 +122,32 @@
 </div>
 <div id="myRow1" class="row myRow statesRowOne">
   <div class="col-md-12">
-    <table width="100%" style="margin-top:10px;">
-      <tr><td id="col1" style="vertical-align: top;">
-        <div id="divCol1Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
-        </div>
-        <div id="spacerdiv1" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
-          <img id="spacerimg1" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
-        </div>
-      </td>
-      <td id="col2" style="vertical-align: top;">
-        <div id="divCol2Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
-        </div>
-        <div id="spacerdiv2" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
-          <img id="spacerimg2" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
-        </div>
-      </td>
-      <td id="col3" style="vertical-align: top;">
-        <div id="divCol3Wrap" style="clear:both;position:relative;top:0;left:0;text-align:center;">
-        </div>
-        <div id="spacerdiv3" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
-          <img id="spacerimg3" src="../images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
-        </div>
-      </td></tr>
-    </table>
+    <div class="statesContainer">
+      <table width="100%" style="margin-top:10px;">
+        <tr>
+          <td id="col1" style="vertical-align: top;text-align:right;">
+            <div id="divCol1Wrap" style="clear:both;position:relative;top:0;left:0;">
+            </div>
+            <div id="spacerdiv1" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+              <img id="spacerimg1" src="~/images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+            </div>
+          </td>
+          <td id="col2" style="vertical-align: top;text-align:center;">
+            <div id="divCol2Wrap" style="clear:both;position:relative;top:0;left:0">
+            </div>
+            <div id="spacerdiv2" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+              <img id="spacerimg2" src="~/images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+            </div>
+          </td>
+          <td id="col3" style="vertical-align: top;text-align:left;">
+            <div id="divCol3Wrap" style="clear:both;position:relative;top:0;left:0;">
+            </div>
+            <div id="spacerdiv3" style="clear:both;position:relative;top:0;left:0;background-color:transparent;z-index:1;display:none;">
+              <img id="spacerimg3" src="~/images/spacer.gif" height="1" width="1" style="position:absolute;top:0;left:0;z-index:1;display:none;" />
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

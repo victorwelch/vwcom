@@ -88,11 +88,20 @@ code {
   margin-right: 15px;
   height: 35px;
 }
+.noCursor {
+  cursor:none;
+}
+#divSplashBackground {
+  background: url(../images/bgDamascus03.png) repeat;
+  position: relative;
+  height: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
 /***************************************************************************/
 /* Border Container holds both Jumbo1 (rotating cube) and Auto/Manual menu */
 /* ...Start of Rotating cube and collapsed header border/div stuff         */
 /***************************************************************************/
-
 /* ----------- Border Container stuff -------------*/
 .myBrdrContainerTopBotLine {
   position: absolute;
@@ -1347,7 +1356,7 @@ div.myInlineBlock {
   margin-left: 35px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 576px) {
   .ulInstr {
     padding: 0;
   }
@@ -1380,10 +1389,11 @@ div.myInlineBlock {
     padding-right: 30px;
   }
 }
-
+/*
 @media (max-width: 500px) {
   .divInstrZero {
     padding-left: 5px;
     padding-right: 5px;
   }
+*/
 }

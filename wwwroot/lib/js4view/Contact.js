@@ -1,4 +1,4 @@
-﻿// *** Google Analystics ***
+// *** Google Analystics ***
 window.dataLayer = window.dataLayer || [];
 
 function gtag() {
@@ -35,7 +35,8 @@ var doSend = function () {
         myDivChild.attr('id', 'divCloneWait');
         var myNewParentDiv = $('#divCol1Wrap');
         myDivChild.appendTo(myNewParentDiv);
-        myDivChild.show().removeAttr('notshow');
+      myDivChild.show().removeAttr('notshow');
+      debugger;
         doPostEmailSend(myJsonObj);
     }
     $().myCommonPlugin().footerResizer();
